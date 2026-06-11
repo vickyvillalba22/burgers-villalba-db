@@ -2,6 +2,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 
 import ProductGrid from "@/components/ProductGrid";
+import ErrorMsg from '@/components/ui/ErrorMsg'
 import { getCategoryById } from "@/lib/categories";
 import { getProductsByCategory } from "@/lib/products";
 
@@ -41,7 +42,18 @@ export default async function CategoryProductsPage({ params }) {
           ) : null}
         </section>
 
-        <ProductGrid products={products} />
+        {products.length > 0 ? (
+          <ProductGrid products={products} />
+        ) : (
+          <ErrorMsg
+            title="No hay hamburguesas en esta categoría"
+            description={`Todavía no se cargaron productos en la categoría "${category.name}".`}
+            buttonText="Ver todas las hamburguesas"
+            buttonHref="/"
+            image="/images/errors/empty-category.svg"
+          />
+        )}
+        
       </div>
     </main>
   );
