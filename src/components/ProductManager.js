@@ -168,6 +168,7 @@ export default function ProductManager({
             value={form.image}
             onChange={handleChange}
           />
+
           <fieldset className="rounded-lg border border-slate-300 px-4 py-3">
             <legend className="px-1 text-sm font-medium text-slate-700">
               Categorias
