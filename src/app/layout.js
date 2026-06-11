@@ -1,4 +1,4 @@
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono, Bebas_Neue, Lily_Script_One } from "next/font/google";
 
 import Navbar from "@/components/Navbar";
 
@@ -6,6 +6,18 @@ import "./globals.css";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
+  subsets: ["latin"],
+});
+
+const bebasNeue = Bebas_Neue({
+  weight: "400",
+  variable: "--font-titles",
+  subsets: ["latin"],
+});
+
+const lilyScript = Lily_Script_One({
+  weight: "400",
+  variable: "--font-decorations",
   subsets: ["latin"],
 });
 
@@ -23,7 +35,7 @@ export default function RootLayout({ children }) {
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${geistSans.variable} ${geistMono.variable} ${bebasNeue.variable} ${lilyScript} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
         <Navbar />

@@ -10,7 +10,8 @@ export default function Navbar() {
   return (
     <header className="border-b border-slate-200 bg-white">
       <nav className="mx-auto flex max-w-6xl flex-col gap-4 px-6 py-4 text-slate-900 sm:flex-row sm:items-center sm:justify-between">
-        <Link className="text-lg font-semibold" href="/">
+        
+        <Link className="text-lg font-medium" href="/">
           Ecommerce TP
         </Link>
 
