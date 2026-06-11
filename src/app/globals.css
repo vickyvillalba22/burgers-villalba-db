@@ -14,7 +14,7 @@
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
   --font-titles: var(--font-titles);
-  --font-extra: var(--font-decorations);
+  --font-deco: var(--font-deco)
 }
 
 body {
@@ -25,4 +25,8 @@ body {
 
 h1, h2, h3, h4 {
   font-family: var(--font-titles);
+}
+
+.fontDeco{
+  font-family: var(--font-deco);
 }

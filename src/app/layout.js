@@ -17,7 +17,7 @@ const bebasNeue = Bebas_Neue({
 
 const lilyScript = Lily_Script_One({
   weight: "400",
-  variable: "--font-decorations",
+  variable: "--font-deco",
   subsets: ["latin"],
 });
 
@@ -35,7 +35,7 @@ export default function RootLayout({ children }) {
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} ${bebasNeue.variable} ${lilyScript} h-full antialiased`}
+      className={`${geistSans.variable} ${geistMono.variable} ${bebasNeue.variable} ${lilyScript.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
         <Navbar />
