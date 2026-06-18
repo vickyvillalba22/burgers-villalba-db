@@ -30,3 +30,16 @@ h1, h2, h3, h4 {
 .fontDeco{
   font-family: var(--font-deco);
 }
+
+.script-outline {
+  text-shadow:
+    3px 3px 0 #fff,
+    -3px 3px 0 #fff,
+    3px -3px 0 #fff,
+    -3px -3px 0 #fff,
+    0 0 12px rgba(255,255,255,.4);
+}
+
+.stroke-text {
+  -webkit-text-stroke: 3px #F91814;
+}
