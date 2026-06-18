@@ -27,7 +27,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
-  title: "CRUD de Productos",
+  title: "Best burgers",
   description: "Ejemplo simple de ecommerce con Next.js y MongoDB",
 };
 

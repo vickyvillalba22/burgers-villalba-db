@@ -1,5 +1,4 @@
 import ProductGrid from "@/components/ProductGrid";
-import ProjectProgress from "@/components/ui/ProjectProgress";
 import ErrorMsg from "@/components/ui/ErrorMsg";
 import HeroSection from "@/components/HeroSection";
 
@@ -10,8 +9,6 @@ const HomeContainer = ({ products }) => {
       <div className="mx-auto max-w-6xl">
 
         <HeroSection />
-
-        <ProjectProgress />
 
         {products.length > 0 ? (
           <ProductGrid products={products} />
