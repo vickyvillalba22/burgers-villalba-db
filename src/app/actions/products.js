@@ -90,3 +90,22 @@ export async function deleteProduct(id) {
     };
   }
 }
+
+export async function getRelatedProducts(productId, categories) {
+  try {
+    await connectDB();
+
+    const relatedProducts = await Product.find({
+      _id: { $ne: productId },
+      categories: { $in: categories },
+    })
+      .limit(4)
+      .populate("categories")
+      .lean();
+
+    return JSON.parse(JSON.stringify(relatedProducts));
+  } catch (error) {
+    console.error(error);
+    return [];
+  }
+}

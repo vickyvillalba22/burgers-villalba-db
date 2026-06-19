@@ -1,8 +1,8 @@
 import Image from "next/image";
 import BackButton from "@/components/ui/BackButton";
-import RelatedProducts from "@/components/RelatedProducts";
+import RelatedProducts from "@/components/sections/RelatedProducts";
 import CustomExistingProduct from "@/components/CustomExistingProduct";
-import BasicDetails from "@/components/ui/sections/BasicDetails";
+import BasicDetails from "@/components/sections/BasicDetails";
 
 const ProductDetailCont = ({ product }) => {
   return (
@@ -14,7 +14,7 @@ const ProductDetailCont = ({ product }) => {
 
         <CustomExistingProduct />
 
-        <RelatedProducts />
+        <RelatedProducts product={product} />
 
     </main>
   )

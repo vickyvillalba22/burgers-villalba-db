@@ -1,6 +1,9 @@
 import { Geist, Geist_Mono, Bebas_Neue, Lily_Script_One } from "next/font/google";
 
-import Navbar from "@/components/Navbar";
+import { AppProvider } from "@/app/context/AppContext";
+
+import Navbar from "@/components/sections/Navbar";
+import Footer from "@/components/sections/Footer";
 
 import "./globals.css";
 
@@ -38,8 +41,11 @@ export default function RootLayout({ children }) {
       className={`${geistSans.variable} ${geistMono.variable} ${bebasNeue.variable} ${lilyScript.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
-        <Navbar />
-        {children}
+        <AppProvider>
+          <Navbar />
+          {children}
+          <Footer />
+        </AppProvider>
       </body>
     </html>
   );

@@ -1,6 +1,6 @@
-import ProductGrid from "@/components/ProductGrid";
+import ProductGrid from "@/components/sections/ProductGrid";
 import ErrorMsg from "@/components/ui/ErrorMsg";
-import HeroSection from "@/components/HeroSection";
+import HeroSection from "@/components/sections/HeroSection";
 
 const HomeContainer = ({ products }) => {
 

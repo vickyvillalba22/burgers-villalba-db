@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
-import ProductGrid from "@/components/ProductGrid";
+import ProductGrid from "@/components/sections/ProductGrid";
 import ErrorMsg from '@/components/ui/ErrorMsg'
 import { getCategoryById } from "@/lib/categories";
 import { getProductsByCategory } from "@/lib/products";
