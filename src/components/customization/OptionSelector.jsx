@@ -7,7 +7,7 @@ const OptionSelector = ({options, value, onChange, type = "radio"}) => {
         const isSelected =
           type === "radio"
             ? value === option.value
-            : value.includes(option.value);
+            : Array.isArray(value) && value.includes(option.value);
 
         return (
           <button

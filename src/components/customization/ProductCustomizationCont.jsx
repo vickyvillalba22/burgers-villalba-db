@@ -7,10 +7,7 @@ import PriceSummary from "./PriceSummary";
 export default function ProductCustomizationContainer({ product }) {
 
   const [customization, setCustomization] = useState({
-
     size: "simple",
-    sizePrice: 0,
-    
     pattyType: "carne",
     removedIngredients: [],
     extras: [],
