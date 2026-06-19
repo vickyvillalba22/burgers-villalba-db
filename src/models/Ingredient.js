@@ -17,6 +17,9 @@ const ingredientSchema = new mongoose.Schema(
         "cheese",
         "topping",
         "sauce",
+        "drink",
+        "side",
+        "extra",
       ],
     },
 

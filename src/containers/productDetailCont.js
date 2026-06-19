@@ -1,10 +1,10 @@
-import Image from "next/image";
 import BackButton from "@/components/ui/BackButton";
 import RelatedProducts from "@/components/sections/RelatedProducts";
-import CustomExistingProduct from "@/components/CustomExistingProduct";
 import BasicDetails from "@/components/sections/BasicDetails";
+import ProductCustomizationCont from "@/components/customization/ProductCustomizationCont";
 
 const ProductDetailCont = ({ product }) => {
+
   return (
     <main className="container mx-auto px-4 py-8">
 
@@ -12,7 +12,7 @@ const ProductDetailCont = ({ product }) => {
 
         <BasicDetails product={product} />
 
-        <CustomExistingProduct />
+        <ProductCustomizationCont product={product} />
 
         <RelatedProducts product={product} />
 

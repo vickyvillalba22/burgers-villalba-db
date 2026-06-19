@@ -34,6 +34,10 @@ const productSchema = new mongoose.Schema(
         ref: "Category",
       },
     ],
+    customization: {
+      type: mongoose.Schema.Types.Mixed,
+      default: {},
+    },
   },
   {
     timestamps: true,
