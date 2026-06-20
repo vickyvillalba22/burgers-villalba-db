@@ -1,9 +1,10 @@
 import { calculatePrice } from "@/lib/calculatePrice";
 import { burgerCustomizationConfig } from "@/lib/customizationConfig";
+import { useAppContext } from "@/app/context/AppContext";
 
 const PriceSummary = ({ product, customization }) => {
 
-    //ESTO PASARLO A UN UTIL
+  //ESTO PASARLO A UN UTIL
   const size = burgerCustomizationConfig.sizes.find(
     (item) => item.value === customization.size
   );
@@ -27,6 +28,8 @@ const PriceSummary = ({ product, customization }) => {
   );
 
   const total = calculatePrice(product, customization);
+
+  const { addToCart } = useAppContext();
 
   return (
     <section>
@@ -84,6 +87,28 @@ const PriceSummary = ({ product, customization }) => {
         <strong>Total</strong>
         <strong>${total}</strong>
       </div>
+
+      <button
+
+        disabled={product.stock === 0}
+
+        className={`mt-8 w-fit rounded-full px-8 py-4 font-semibold text-white transition ${
+          product.stock > 0
+            ? "bg-(--accent) hover:scale-105"
+            : "cursor-not-allowed bg-slate-400"
+        }`}
+
+        onClick={() => {
+          console.log("CLICK");
+          addToCart(product, customization);
+        }}
+
+      >
+
+        {product.stock > 0 ? "Agregar al carrito" : "Sin stock"}
+        
+      </button>
+
     </section>
   );
 };

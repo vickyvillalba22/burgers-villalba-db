@@ -64,17 +64,6 @@ const BasicDetails = ({product}) => {
       )}
     </div>
 
-    <button
-      disabled={product.stock === 0}
-      className={`mt-8 w-fit rounded-full px-8 py-4 font-semibold text-white transition ${
-        product.stock > 0
-          ? "bg-(--accent) hover:scale-105"
-          : "cursor-not-allowed bg-slate-400"
-      }`}
-    >
-      {product.stock > 0 ? "Agregar al carrito" : "Sin stock"}
-    </button>
-
   </div>
 
 </section>

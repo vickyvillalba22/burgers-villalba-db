@@ -1,14 +1,23 @@
+'use client'
+
 import Link from "next/link";
 
-const links = [
-  { href: "/", label: "Home" },
-  { href: "/categories", label: "Categorias" },
-  { href: "/dashboard", label: "Dashboard" },
-];
+import { useAppContext } from "@/app/context/AppContext";
 
 export default function Navbar() {
+
+  const links = [
+    { href: "/", label: "Home" },
+    { href: "/categories", label: "Categorias" },
+    { href: "/dashboard", label: "Dashboard" },
+  ];
+
+  const { toggleCart, cartItemsCount } = useAppContext();
+
   return (
+
     <header>
+
       <nav className="mx-auto flex max-w-6xl flex-col gap-4 px-6 py-4 text-slate-900 sm:flex-row sm:items-center sm:justify-between">
         
         <Link className="text-lg fontDeco text-(--accent)" href="/">
@@ -26,7 +35,21 @@ export default function Navbar() {
             </Link>
           ))}
         </div>
+
       </nav>
+
+      <button onClick={toggleCart}>
+
+        🛒
+
+        {cartItemsCount > 0 && (
+          <span className="flex h-5 w-5 items-center justify-center rounded-full bg-red-500 text-xs text-white">
+            {cartItemsCount}
+          </span>
+        )}
+
+      </button>
+
     </header>
   );
 }

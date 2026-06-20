@@ -4,6 +4,7 @@ import { AppProvider } from "@/app/context/AppContext";
 
 import Navbar from "@/components/sections/Navbar";
 import Footer from "@/components/sections/Footer";
+import CartSidebar from "@/components/cart/CartSideBar";
 
 import "./globals.css";
 
@@ -43,6 +44,7 @@ export default function RootLayout({ children }) {
       <body className="min-h-full flex flex-col">
         <AppProvider>
           <Navbar />
+          <CartSidebar />
           {children}
           <Footer />
         </AppProvider>
