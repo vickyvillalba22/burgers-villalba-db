@@ -14,6 +14,11 @@ function getProductPayload(formData) {
     price: Number(formData.get("price")),
     stock: Number(formData.get("stock")),
     image: formData.get("image"),
+    ingredients: formData
+      .get("ingredients")
+      ?.split(",")
+      .map((ingredient) => ingredient.trim())
+      .filter(Boolean),
     categories: formData
       .getAll("categories")
       .filter((categoryId) => mongoose.Types.ObjectId.isValid(categoryId)),

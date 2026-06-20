@@ -11,6 +11,7 @@ function serializeProduct(product) {
     price: product.price,
     stock: product.stock,
     image: product.image,
+    ingredients: product.ingredients || [],
     categories: (product.categories || []).map((category) => {
       if (category?.name) {
         return serializeCategory(category);

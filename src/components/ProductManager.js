@@ -20,6 +20,7 @@ const initialForm = {
   stock: "",
   image: "",
   categories: [],
+  ingredients: "",
 };
 
 export default function ProductManager({
@@ -94,6 +95,7 @@ export default function ProductManager({
       categories: (product.categories || []).map((category) =>
         typeof category === "string" ? category : category._id
       ),
+      ingredients: (product.ingredients || []).join(", ")
     });
     setMessage("Editando producto.");
   }
@@ -151,6 +153,7 @@ export default function ProductManager({
             onChange={handleChange}
             required
           />
+
           <input
             className="w-full rounded-lg border border-slate-300 px-4 py-3 outline-none"
             name="stock"
@@ -161,11 +164,20 @@ export default function ProductManager({
             onChange={handleChange}
             required
           />
+
           <input
             className="w-full rounded-lg border border-slate-300 px-4 py-3 outline-none"
             name="image"
             placeholder="Nombre de imagen, ej: dummy.webp"
             value={form.image}
+            onChange={handleChange}
+          />
+
+          <input
+            className="w-full rounded-lg border border-slate-300 px-4 py-3 outline-none"
+            name="ingredients"
+            placeholder="Queso, Bacon, Lechuga, Tomate"
+            value={form.ingredients}
             onChange={handleChange}
           />
 

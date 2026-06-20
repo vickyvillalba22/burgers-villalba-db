@@ -7,6 +7,20 @@ import { burgerCustomizationConfig } from "@/lib/customizationConfig";
 
 const ProdCustomization = ({product, customization, setCustomization}) => {
 
+    const removableIngredients = (product.ingredients || [])
+        .filter(
+            (ingredient) =>
+            !ingredient.toLowerCase().includes("pan") &&
+            !ingredient.toLowerCase().includes("medallón")
+        )
+        .map((ingredient) => ({
+            value: ingredient,
+            label: ingredient,
+        }));
+
+    console.log(product.ingredients);
+    
+
   return (
     <section>
 
@@ -37,6 +51,25 @@ const ProdCustomization = ({product, customization, setCustomization}) => {
                 setCustomization((prev) => ({
                     ...prev,
                     pattyType: option.value,
+                }))
+                }
+            />
+        </OptionGroup>
+
+        {/*SACAR INGREDIENTES*/}
+        <OptionGroup title="Quitar Ingredientes">
+            <OptionSelector
+                type="checkbox"
+                options={removableIngredients}
+                value={customization.removedIngredients}
+                onChange={(option) =>
+                setCustomization((prev) => ({
+                    ...prev,
+                    removedIngredients: prev.removedIngredients.includes(option.value)
+                    ? prev.removedIngredients.filter(
+                        (item) => item !== option.value
+                        )
+                    : [...prev.removedIngredients, option.value],
                 }))
                 }
             />

@@ -28,6 +28,12 @@ const productSchema = new mongoose.Schema(
       default: "",
       trim: true,
     },
+    ingredients: [
+      {
+        type: String,
+        trim: true,
+      },
+    ],
     categories: [
       {
         type: mongoose.Schema.Types.ObjectId,
