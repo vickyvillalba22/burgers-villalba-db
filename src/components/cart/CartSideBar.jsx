@@ -1,7 +1,11 @@
 "use client";
 
+import Link from "next/link";
+
 import { useAppContext } from "@/app/context/AppContext";
 import CartItemCard from "./CartItemCard";
+
+
 
 const CartSidebar = () => {
 
@@ -72,9 +76,13 @@ const CartSidebar = () => {
             Total: ${cartTotal}
             </p>
 
-            <button className="w-full rounded-full bg-(--accent) py-3 font-semibold text-white">
-            Finalizar compra
-            </button>
+            <Link
+              href="/cart"
+              onClick={closeCart}
+              className="block w-full rounded-full bg-(--accent) py-3 text-center font-semibold text-white"
+            >
+              Ir al carrito
+            </Link>
 
         </div>
 
