@@ -44,6 +44,8 @@ export function AppProvider({ children }) {
   const [favorites, setFavorites] = useState([]);
   const [activeUser, setActiveUser] = useState(null);
 
+  const [checkoutData, setCheckoutData] = useState(null);
+
   //CART ----------------------------------------------
 
   const cartTotal = getCartTotal(cart);
@@ -125,6 +127,9 @@ export function AppProvider({ children }) {
     removeFromCart,
     updateQuantity,
     clearCart,
+
+    checkoutData,
+    setCheckoutData,
 
     favorites,
     activeUser,
