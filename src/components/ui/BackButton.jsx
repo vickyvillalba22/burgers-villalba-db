@@ -6,12 +6,14 @@ const BackButton = () => {
   const router = useRouter();
 
   return (
-    <button
-      onClick={() => router.back()}
-      className="mb-8 inline-flex items-center gap-2 text-sm font-medium text-emerald-700 hover:text-emerald-900"
-    >
-      ← Volver
-    </button>
+    <div className="w-[90%]">
+      <button
+        onClick={() => router.back()}
+        className="mb-8 inline-flex items-center gap-2 font-medium text-lg hover:bg-(--medium)/50 px-3 py-1 rounded-lg cursor-pointer"
+      >
+        ← Volver
+      </button>
+    </div>
   );
 };
 

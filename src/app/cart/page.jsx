@@ -9,7 +9,7 @@ export default function CartPage() {
   const { cart, cartTotal } = useAppContext();
 
   return (
-    <main className="container mx-auto px-4 py-8">
+    <main className="container mx-auto px-4 py-8 w-[90%]">
 
         <BackButton />
 

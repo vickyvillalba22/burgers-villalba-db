@@ -20,15 +20,15 @@ export default function Navbar() {
 
       <nav className="mx-auto flex max-w-6xl flex-col gap-4 px-6 py-4 text-slate-900 sm:flex-row sm:items-center sm:justify-between">
         
-        <Link className="text-lg fontDeco text-(--accent)" href="/">
-          Burgers
+        <Link className="text-[20px] fontDeco text-(--accent)" href="/">
+          Best Burgers
         </Link>
 
         <div className="flex flex-wrap gap-2">
           {links.map((link) => (
             <Link
               key={link.href}
-              className="rounded-lg px-3 py-2 text-sm text-slate-700 hover:bg-slate-100 hover:text-slate-950"
+              className="rounded-lg px-3 py-2 text-sm hover:bg-slate-100 hover:text-slate-950"
               href={link.href}
             >
               {link.label}
@@ -36,19 +36,19 @@ export default function Navbar() {
           ))}
         </div>
 
-      </nav>
+        <button onClick={toggleCart} className="flex items-center gap-2 text-sm hover:bg-slate-100 hover:text-slate-950 rounded-lg px-3 py-2 cursor-pointer">
 
-      <button onClick={toggleCart}>
+          Carrito
 
-        🛒
-
-        {cartItemsCount > 0 && (
-          <span className="flex h-5 w-5 items-center justify-center rounded-full bg-red-500 text-xs text-white">
-            {cartItemsCount}
-          </span>
-        )}
+          {cartItemsCount > 0 && (
+            <span className="flex h-5 w-5 items-center justify-center rounded-full bg-red-500 text-xs text-white">
+              {cartItemsCount}
+            </span>
+          )}
 
       </button>
+
+      </nav>
 
     </header>
   );

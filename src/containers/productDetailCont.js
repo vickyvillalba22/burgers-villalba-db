@@ -6,13 +6,17 @@ import ProductCustomizationCont from "@/components/customization/ProductCustomiz
 const ProductDetailCont = ({ product }) => {
 
   return (
-    <main className="container mx-auto px-4 py-8">
+    <main className="container mx-auto px-4 py-8 flex flex-col items-center">
 
         <BackButton />
 
-        <BasicDetails product={product} />
+        <div className="flex justify-evenly w-[90%]">
 
-        <ProductCustomizationCont product={product} />
+          <BasicDetails product={product} />
+
+          <ProductCustomizationCont product={product} />
+
+        </div>
 
         <RelatedProducts product={product} />
 

@@ -32,84 +32,105 @@ const PriceSummary = ({ product, customization }) => {
   const { addToCart } = useAppContext();
 
   return (
-    <section>
-      <h3>Resumen</h3>
+<section className="sticky top-6 h-fit rounded-2xl border border-zinc-200 bg-white p-6 shadow-sm">
 
-      <div>
-        <span>Precio base</span>
-        <span>${product.price}</span>
+  <h3 className="mb-6 text-xl font-bold">
+    Resumen del pedido
+  </h3>
+
+  <div className="space-y-3 text-sm">
+
+    <div className="flex justify-between">
+      <span className="text-zinc-600">Precio base</span>
+      <span className="font-medium">${product.price}</span>
+    </div>
+
+    {size?.price > 0 && (
+      <div className="flex justify-between">
+        <span className="text-zinc-600">{size.label}</span>
+        <span className="font-medium">+${size.price}</span>
       </div>
+    )}
 
-      {size?.price > 0 && (
-        <div>
-          <span>{size.label}</span>
-          <span>+${size.price}</span>
-        </div>
-      )}
-
-      {patty?.priceModifier !== 0 && (
-        <div>
-          <span>Medallón {patty.label}</span>
-          <span>
-            {patty.priceModifier > 0 ? "+" : ""}
-            ${patty.priceModifier}
-          </span>
-        </div>
-      )}
-
-      {extras.map(
-        (extra) =>
-          extra && (
-            <div key={extra.value}>
-              <span>{extra.label}</span>
-              <span>+${extra.price}</span>
-            </div>
-          )
-      )}
-
-      {fries && (
-        <div>
-          <span>Papas {fries.label}</span>
-          <span>+${fries.price}</span>
-        </div>
-      )}
-
-      {drink && (
-        <div>
-          <span>{drink.label}</span>
-          <span>+${drink.price}</span>
-        </div>
-      )}
-
-      <hr />
-
-      <div>
-        <strong>Total</strong>
-        <strong>${total}</strong>
+    {patty?.priceModifier !== 0 && (
+      <div className="flex justify-between">
+        <span className="text-zinc-600">
+          Medallón {patty.label}
+        </span>
+        <span className="font-medium">
+          {patty.priceModifier > 0 ? "+" : ""}
+          ${patty.priceModifier}
+        </span>
       </div>
+    )}
 
-      <button
+    {extras.map(
+      (extra) =>
+        extra && (
+          <div
+            key={extra.value}
+            className="flex justify-between"
+          >
+            <span className="text-zinc-600">
+              {extra.label}
+            </span>
+            <span className="font-medium">
+              +${extra.price}
+            </span>
+          </div>
+        )
+    )}
 
-        disabled={product.stock === 0}
+    {fries && (
+      <div className="flex justify-between">
+        <span className="text-zinc-600">
+          Papas {fries.label}
+        </span>
+        <span className="font-medium">
+          +${fries.price}
+        </span>
+      </div>
+    )}
 
-        className={`mt-8 w-fit rounded-full px-8 py-4 font-semibold text-white transition ${
-          product.stock > 0
-            ? "bg-(--accent) hover:scale-105"
-            : "cursor-not-allowed bg-slate-400"
-        }`}
+    {drink && (
+      <div className="flex justify-between">
+        <span className="text-zinc-600">
+          {drink.label}
+        </span>
+        <span className="font-medium">
+          +${drink.price}
+        </span>
+      </div>
+    )}
 
-        onClick={() => {
-          console.log("CLICK");
-          addToCart(product, customization);
-        }}
+  </div>
 
-      >
+  <div className="my-6 border-t border-zinc-200" />
 
-        {product.stock > 0 ? "Agregar al carrito" : "Sin stock"}
-        
-      </button>
+  <div className="flex items-center justify-between">
+    <span className="text-lg font-bold">
+      Total
+    </span>
+    <span className="text-2xl font-bold text-(--accent)">
+      ${total}
+    </span>
+  </div>
 
-    </section>
+  <button
+    disabled={product.stock === 0}
+    className={`mt-6 w-full rounded-full px-6 py-4 font-semibold text-white transition cursor-pointer ${
+      product.stock > 0
+        ? "bg-(--accent) hover:scale-[1.02]"
+        : "cursor-not-allowed bg-slate-400"
+    }`}
+    onClick={() => {
+      addToCart(product, customization);
+    }}
+  >
+    {product.stock > 0 ? "Agregar al carrito" : "Sin stock"}
+  </button>
+
+</section>
   );
 };
 

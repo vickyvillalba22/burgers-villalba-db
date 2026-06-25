@@ -1,10 +1,10 @@
 const OptionGroup = ({title, children}) => {
   return (
-    <section className="space-y-4 rounded-2xl border border-zinc-200 p-5">
+    <section className="space-y-4 rounded-2xl">
 
-      <h3 className="text-lg font-semibold">
+      <p className="text-md font-semibold">
         {title}
-      </h3>
+      </p>
 
       {children}
 

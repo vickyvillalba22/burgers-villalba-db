@@ -3,16 +3,16 @@ import Image from 'next/image'
 
 const BasicDetails = ({product}) => {
   return (
-    <section className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr]">
+    <section className="flex flex-col justify-evenly w-[50%] h-[50vh] gap-12">
 
-    <div className="rounded-3xl bg-white p-6 h-[30vh]">
+    <div className="rounded-3xl p-6 h-[40vh]">
         {product.image ? (
         <Image
-            src={`/images/products/${product.image}`}
-            width={250}
-            height={250}
+            src={`${product.image}`}
+            width={400}
+            height={300}
             alt={product.name}
-            className="mx-auto w-100px object-contain drop-shadow-xl"
+            className="mx-auto object-contain drop-shadow-xl h-[40vh]"
         />
         ) : (
         <div className="flex items-center justify-center text-slate-500">
@@ -23,11 +23,7 @@ const BasicDetails = ({product}) => {
 
   <div className="flex flex-col justify-center">
 
-    <p className="font-decorations text-2xl text-accent">
-      smashed
-    </p>
-
-    <h1 className="font-titles text-5xl leading-none text-accent md:text-7xl">
+    <h1 className="font-titles text-5xl leading-none text-accent md:text-6xl">
       {product.name}
     </h1>
 

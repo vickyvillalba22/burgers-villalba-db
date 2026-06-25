@@ -40,15 +40,7 @@ export default function CardProduct({ product }) {
         {product.categories.map((category) => (
           <span
             key={typeof category === "string" ? category : category._id}
-            className="
-              rounded-full
-              bg-background
-              px-3
-              py-1
-              text-xs
-              font-medium
-              text-slate-700
-            "
+            className="rounded-full bg-background px-3 py-1 text-xs font-medium text-slate-700"
           >
             {typeof category === "string"
               ? category
@@ -61,19 +53,7 @@ export default function CardProduct({ product }) {
     {/* Texto */}
     <div className="mt-4">
 
-      <p className="font-decorations text-lg text-accent">
-        smashed
-      </p>
-
-      <h2
-        className="
-          font-titles
-          text-4xl
-          leading-none
-          uppercase
-          text-accent
-        "
-      >
+      <h2 className="font-titles text-4xl leading-none uppercase text-accent">
         {product.name}
       </h2>
 

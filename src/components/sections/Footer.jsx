@@ -6,8 +6,8 @@ export default function Footer() {
       <div className="mx-auto flex max-w-7xl flex-col gap-8 px-6 py-10 md:flex-row md:justify-between">
 
         <div>
-          <p className="font-decorations text-3xl text-accent">
-            Burger Factory
+          <p className="text-3xl fontDeco">
+            Best Burgers
           </p>
 
           <p className="mt-2 max-w-sm text-sm text-slate-600">

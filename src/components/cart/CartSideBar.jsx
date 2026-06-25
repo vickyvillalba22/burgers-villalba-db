@@ -49,7 +49,7 @@ const CartSidebar = () => {
 
         <div className="flex h-[calc(100%-80px)] flex-col">
 
-        <div className="flex-1 overflow-y-auto p-4">
+        <div className="flex-1 flex flex-col gap-4 overflow-y-auto p-4">
 
             {cart.length === 0 ? (
 
