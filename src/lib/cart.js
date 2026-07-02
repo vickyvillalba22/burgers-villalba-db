@@ -77,7 +77,9 @@ export function updateCartItemQuantity(
   quantity
 ) {
 
-  if (quantity < 1) return cart;
+  if (quantity < 1) {
+    return removeCartItem(cart, cartItemId);
+  }
 
   return cart.map((item) =>
     item.cartItemId === cartItemId

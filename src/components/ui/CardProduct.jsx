@@ -1,6 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
 
+import FavoriteToggle from "@/components/favorites/FavoriteToggle";
+
 function getProductImageSrc(image) {
   if (!image) return "";
 
@@ -11,73 +13,81 @@ function getProductImageSrc(image) {
   return `/images/products/${image}`;
 }
 
-export default function CardProduct({ product }) {
+export default function CardProduct({
+  product,
+  showFavoriteToggle = true,
+  requireConfirmOnRemove = false,
+}) {
   return (
-
-    <Link href={`/product/${product._id}`}>
-
     <article className="group relative overflow-hidden rounded-3xl bg-white p-5 transition-all hover:-translate-y-1">
 
-    {/* Imagen */}
-    <div className="relative mx-auto h-56 w-full">
-      {product.image ? (
-        <Image
-          alt={product.name}
-          fill
-          src={getProductImageSrc(product.image)}
-          className="object-contain drop-shadow-xl"
-        />
-      ) : (
-        <div className="flex h-full items-center justify-center text-sm text-slate-500">
-          Sin imagen
+      {showFavoriteToggle && (
+        <div className="absolute right-5 top-5 z-10">
+          <FavoriteToggle
+            product={product}
+            requireConfirmOnRemove={requireConfirmOnRemove}
+          />
         </div>
       )}
-    </div>
 
-    {/* Categorías */}
-    {product.categories?.length > 0 && (
-      <div className="mt-4 flex flex-wrap gap-2">
-        {product.categories.map((category) => (
-          <span
-            key={typeof category === "string" ? category : category._id}
-            className="rounded-full bg-background px-3 py-1 text-xs font-medium text-slate-700"
-          >
-            {typeof category === "string"
-              ? category
-              : category.name}
-          </span>
-        ))}
-      </div>
-    )}
+      <Link href={`/product/${product._id}`}>
 
-    {/* Texto */}
-    <div className="mt-4">
+        <div className="relative mx-auto h-56 w-full">
+          {product.image ? (
+            <Image
+              alt={product.name}
+              fill
+              src={getProductImageSrc(product.image)}
+              className="object-contain drop-shadow-xl"
+            />
+          ) : (
+            <div className="flex h-full items-center justify-center text-sm text-slate-500">
+              Sin imagen
+            </div>
+          )}
+        </div>
 
-      <h2 className="font-titles text-4xl leading-none uppercase text-accent">
-        {product.name}
-      </h2>
+        {product.categories?.length > 0 && (
+          <div className="mt-4 flex flex-wrap gap-2">
+            {product.categories.map((category) => (
+              <span
+                key={typeof category === "string" ? category : category._id}
+                className="rounded-full bg-background px-3 py-1 text-xs font-medium text-slate-700"
+              >
+                {typeof category === "string"
+                  ? category
+                  : category.name}
+              </span>
+            ))}
+          </div>
+        )}
 
-      <p className="mt-3 line-clamp-2 text-sm text-slate-600">
-        {product.description || "Sin descripción"}
-      </p>
+        <div className="mt-4">
 
-      <div className="mt-4 flex items-end justify-between">
+          <h2 className="font-titles text-4xl leading-none uppercase text-accent">
+            {product.name}
+          </h2>
 
-        <span className="text-sm text-slate-500">
-          Stock: {product.stock}
-        </span>
+          <p className="mt-3 line-clamp-2 text-sm text-slate-600">
+            {product.description || "Sin descripción"}
+          </p>
 
-        <span className="text-3xl font-bold text-slate-900">
-          ${product.price}
-        </span>
+          <div className="mt-4 flex items-end justify-between">
 
-      </div>
+            <span className="text-sm text-slate-500">
+              Stock: {product.stock}
+            </span>
 
-    </div>
+            <span className="text-3xl font-bold text-slate-900">
+              ${product.price}
+            </span>
 
-  </article>
+          </div>
 
-  </Link>
+        </div>
 
+      </Link>
+
+    </article>
   );
 }

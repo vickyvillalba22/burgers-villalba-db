@@ -1,8 +1,10 @@
 "use client";
 
+import { useState } from "react";
 import Image from "next/image";
 
 import { useAppContext } from "@/app/context/AppContext";
+import ConfirmDialog from "@/components/ui/ConfirmDialog";
 
 function getProductImageSrc(image) {
   if (!image) return "";
@@ -21,7 +23,28 @@ const CartItemCard = ({ item }) => {
     updateQuantity
   } = useAppContext();
 
+  const [showRemoveConfirm, setShowRemoveConfirm] = useState(false);
+
+  const handleDecrease = () => {
+    if (item.quantity <= 1) {
+      setShowRemoveConfirm(true);
+      return;
+    }
+
+    updateQuantity(item.cartItemId, item.quantity - 1);
+  };
+
+  const handleConfirmRemove = () => {
+    removeFromCart(item.cartItemId);
+    setShowRemoveConfirm(false);
+  };
+
+  const handleCancelRemove = () => {
+    setShowRemoveConfirm(false);
+  };
+
   return (
+    <>
     <article className="rounded-xl border p-4">
 
       <div className="flex gap-4">
@@ -105,13 +128,10 @@ const CartItemCard = ({ item }) => {
             <div className="flex items-center gap-3">
 
               <button
-                onClick={() =>
-                  updateQuantity(
-                    item.cartItemId,
-                    item.quantity - 1
-                  )
-                }
+                type="button"
+                onClick={handleDecrease}
                 className="flex h-8 w-8 items-center justify-center rounded-full border"
+                aria-label="Disminuir cantidad"
               >
                 -
               </button>
@@ -121,6 +141,7 @@ const CartItemCard = ({ item }) => {
               </span>
 
               <button
+                type="button"
                 onClick={() =>
                   updateQuantity(
                     item.cartItemId,
@@ -128,6 +149,7 @@ const CartItemCard = ({ item }) => {
                   )
                 }
                 className="flex h-8 w-8 items-center justify-center rounded-full border"
+                aria-label="Aumentar cantidad"
               >
                 +
               </button>
@@ -141,9 +163,8 @@ const CartItemCard = ({ item }) => {
           </div>
 
           <button
-            onClick={() =>
-              removeFromCart(item.cartItemId)
-            }
+            type="button"
+            onClick={() => setShowRemoveConfirm(true)}
             className="w-fit text-sm text-red-500"
           >
             Eliminar
@@ -154,6 +175,25 @@ const CartItemCard = ({ item }) => {
       </div>
 
     </article>
+
+    <ConfirmDialog
+      open={showRemoveConfirm}
+      title="Eliminar producto"
+      message={`¿Estás seguro de que deseás eliminar "${item.name}" del carrito?`}
+      buttons={[
+        {
+          label: "No, cancelar",
+          onClick: handleCancelRemove,
+          variant: "secondary",
+        },
+        {
+          label: "Sí, eliminar",
+          onClick: handleConfirmRemove,
+          variant: "primary",
+        },
+      ]}
+    />
+    </>
   );
 };
 

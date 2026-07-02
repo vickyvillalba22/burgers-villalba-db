@@ -1,6 +1,8 @@
 import React from 'react'
 import Image from 'next/image'
 
+import FavoriteToggle from '@/components/favorites/FavoriteToggle'
+
 const BasicDetails = ({product}) => {
   return (
     <section className="flex flex-col justify-evenly w-[50%] h-[50vh] gap-12">
@@ -58,6 +60,10 @@ const BasicDetails = ({product}) => {
           Sin stock
         </span>
       )}
+    </div>
+
+    <div className="mt-4">
+      <FavoriteToggle product={product} />
     </div>
 
   </div>

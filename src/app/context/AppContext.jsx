@@ -12,12 +12,22 @@ import {
   getCartItemsCount
 } from "@/lib/cart";
 
+import {
+  addFavorite as addFavoriteItem,
+  removeFavorite as removeFavoriteItem,
+  isFavorite as checkIsFavorite,
+  getFavoritesCount
+} from "@/lib/favorites";
+
 const AppContext = createContext();
 
 export function AppProvider({ children }) {
 
   const [cart, setCart] = useState([]);
   const [isCartOpen, setIsCartOpen] = useState(false);
+  const [favorites, setFavorites] = useState([]);
+  const [activeUser, setActiveUser] = useState(null);
+  const [checkoutData, setCheckoutData] = useState(null);
 
   useEffect(() => {
 
@@ -27,6 +37,14 @@ export function AppProvider({ children }) {
     if (savedCart) {
       // eslint-disable-next-line react-hooks/set-state-in-effect
       setCart(JSON.parse(savedCart));
+    }
+
+    const savedFavorites =
+      localStorage.getItem("favorites");
+
+    if (savedFavorites) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
+      setFavorites(JSON.parse(savedFavorites));
     }
 
   }, []);
@@ -41,10 +59,14 @@ export function AppProvider({ children }) {
 
   }, [cart]);
 
-  const [favorites, setFavorites] = useState([]);
-  const [activeUser, setActiveUser] = useState(null);
+  useEffect(() => {
 
-  const [checkoutData, setCheckoutData] = useState(null);
+    localStorage.setItem(
+      "favorites",
+      JSON.stringify(favorites)
+    );
+
+  }, [favorites]);
 
   //CART ----------------------------------------------
 
@@ -105,9 +127,24 @@ export function AppProvider({ children }) {
   };
 
 
-  // Favorites
-  const addFavorite = () => {};
-  const removeFavorite = () => {};
+  // Favorites ----------------------------------------------
+
+  const favoritesCount = getFavoritesCount(favorites);
+
+  const addFavorite = (product) => {
+    setFavorites((prevFavorites) =>
+      addFavoriteItem(prevFavorites, product)
+    );
+  };
+
+  const removeFavorite = (productId) => {
+    setFavorites((prevFavorites) =>
+      removeFavoriteItem(prevFavorites, productId)
+    );
+  };
+
+  const isProductFavorite = (productId) =>
+    checkIsFavorite(favorites, productId);
 
   // User
   const loginUser = () => {};
@@ -132,10 +169,12 @@ export function AppProvider({ children }) {
     setCheckoutData,
 
     favorites,
+    favoritesCount,
     activeUser,
 
     addFavorite,
     removeFavorite,
+    isProductFavorite,
 
     loginUser,
     logoutUser,
