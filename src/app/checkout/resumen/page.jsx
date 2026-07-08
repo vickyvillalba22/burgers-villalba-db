@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { useState, useRef, useEffect } from "react";
 
 import { useAppContext } from "@/app/context/AppContext";
 import BackButton from "@/components/ui/BackButton";
@@ -12,8 +13,87 @@ export default function CheckoutReviewPage() {
     cart,
     cartTotal,
     checkoutData,
+    clearCart,
+    setCheckoutData,
   } = useAppContext();
   
+  const router = useRouter();
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(null);
+  const isSubmitting = useRef(false); // Ref para prevenir dobles envíos
+  const abortControllerRef = useRef(null); // Ref para AbortController
+
+  // Cleanup al desmontar el componente
+  useEffect(() => {
+    return () => {
+      if (abortControllerRef.current) {
+        abortControllerRef.current.abort();
+      }
+    };
+  }, []);
+
+  const handleConfirmPurchase = async () => {
+    // Prevenir dobles envíos con ref
+    if (isSubmitting.current) {
+      return;
+    }
+
+    // Validar que el carrito no esté vacío
+    if (cart.length === 0) {
+      setError("El carrito está vacío");
+      return;
+    }
+
+    // Validar que existan datos de checkout (seguridad adicional)
+    if (!checkoutData) {
+      setError("Faltan datos de checkout");
+      return;
+    }
+
+    isSubmitting.current = true;
+    setIsLoading(true);
+    setError(null);
+
+    // Crear nuevo AbortController para esta solicitud
+    abortControllerRef.current = new AbortController();
+
+    try {
+      // Llamar a la API para crear la orden
+      const response = await fetch("/api/orders", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          customer: checkoutData,
+          cart: cart,
+        }),
+        signal: abortControllerRef.current.signal,
+      });
+
+      const data = await response.json();
+
+      if (!data.success) {
+        throw new Error(data.message || "Error al crear la orden");
+      }
+
+      // Vaciar el carrito y los datos de checkout
+      clearCart();
+      setCheckoutData(null);
+
+      // Redireccionar a la página de éxito con el número de orden
+      router.push(`/checkout/exito?orderNumber=${data.order.orderNumber}`);
+
+    } catch (err) {
+      if (err.name === "AbortError") {
+        console.log("Solicitud cancelada");
+        return;
+      }
+      setError(err.message);
+      console.error("Error confirming purchase:", err);
+    } finally {
+      setIsLoading(false);
+      isSubmitting.current = false;
+    }
+  };
 
   if (!checkoutData) {
     return (
@@ -191,10 +271,18 @@ export default function CheckoutReviewPage() {
 
           </div>
 
+          {error && (
+            <p className="mb-4 text-sm text-red-600">
+              {error}
+            </p>
+          )}
+
           <button
-            className="w-full rounded-full bg-(--accent) py-3 font-semibold text-white"
+            onClick={handleConfirmPurchase}
+            disabled={isLoading}
+            className="w-full rounded-full bg-(--accent) py-3 font-semibold text-white disabled:opacity-50"
           >
-            Confirmar compra
+            {isLoading ? "Procesando..." : "Confirmar compra"}
           </button>
 
         </aside>
