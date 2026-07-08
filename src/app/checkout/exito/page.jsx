@@ -2,13 +2,14 @@
 
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
+import { Suspense } from "react";
 
-export default function CheckoutSuccessPage() {
+function CheckoutSuccessContent() {
   const searchParams = useSearchParams();
   const orderNumber = searchParams.get("orderNumber");
 
   return (
-    <main className="container mx-auto flex min-h-[60vh] max-w-6xl flex-col items-center justify-center px-4 py-8 text-center">
+    <>
       <div className="mb-8 text-6xl">🎉</div>
       
       <h1 className="mb-4 text-3xl font-bold">
@@ -31,6 +32,16 @@ export default function CheckoutSuccessPage() {
       >
         Volver al inicio
       </Link>
+    </>
+  );
+}
+
+export default function CheckoutSuccessPage() {
+  return (
+    <main className="container mx-auto flex min-h-[60vh] max-w-6xl flex-col items-center justify-center px-4 py-8 text-center">
+      <Suspense fallback={<div>Cargando...</div>}>
+        <CheckoutSuccessContent />
+      </Suspense>
     </main>
   );
 }
