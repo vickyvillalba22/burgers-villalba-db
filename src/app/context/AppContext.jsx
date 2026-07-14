@@ -47,6 +47,14 @@ export function AppProvider({ children }) {
       setFavorites(JSON.parse(savedFavorites));
     }
 
+    const savedActiveUser =
+      localStorage.getItem("activeUser");
+
+    if (savedActiveUser) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
+      setActiveUser(JSON.parse(savedActiveUser));
+    }
+
   }, []);
 
   useEffect(() => {
@@ -67,6 +75,15 @@ export function AppProvider({ children }) {
     );
 
   }, [favorites]);
+
+  useEffect(() => {
+    if (activeUser) {
+      localStorage.setItem(
+        "activeUser",
+        JSON.stringify(activeUser)
+      );
+    }
+  }, [activeUser]);
 
   //CART ----------------------------------------------
 
@@ -147,8 +164,13 @@ export function AppProvider({ children }) {
     checkIsFavorite(favorites, productId);
 
   // User
-  const loginUser = () => {};
-  const logoutUser = () => {};
+  const loginUser = (user) => {
+    setActiveUser(user);
+  };
+  const logoutUser = () => {
+    setActiveUser(null);
+    localStorage.removeItem("activeUser");
+  };
 
   const value = {
     cart,
