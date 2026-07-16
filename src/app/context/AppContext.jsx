@@ -21,6 +21,60 @@ import {
 
 const AppContext = createContext();
 
+async function requestFavorites(userId) {
+  const response = await fetch(`/api/users/${userId}/favorites`);
+  const data = await response.json();
+
+  if (!data.success) {
+    throw new Error(data.message || "Error al obtener favoritos");
+  }
+
+  return data.favorites;
+}
+
+async function requestAddFavorite(userId, productId) {
+  const response = await fetch(`/api/users/${userId}/favorites`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ productId }),
+  });
+  const data = await response.json();
+
+  if (!data.success) {
+    throw new Error(data.message || "Error al agregar favorito");
+  }
+
+  return data.favorites;
+}
+
+async function requestRemoveFavorite(userId, productId) {
+  const response = await fetch(`/api/users/${userId}/favorites/${productId}`, {
+    method: "DELETE",
+  });
+  const data = await response.json();
+
+  if (!data.success) {
+    throw new Error(data.message || "Error al eliminar favorito");
+  }
+
+  return data.favorites;
+}
+
+async function requestSyncFavorites(userId, favoriteIds) {
+  const response = await fetch(`/api/users/${userId}/favorites/sync`, {
+    method: "PUT",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ favoriteIds }),
+  });
+  const data = await response.json();
+
+  if (!data.success) {
+    throw new Error(data.message || "Error al sincronizar favoritos");
+  }
+
+  return data.favorites;
+}
+
 export function AppProvider({ children }) {
 
   const [cart, setCart] = useState([]);
@@ -39,20 +93,25 @@ export function AppProvider({ children }) {
       setCart(JSON.parse(savedCart));
     }
 
-    const savedFavorites =
-      localStorage.getItem("favorites");
-
-    if (savedFavorites) {
-      // eslint-disable-next-line react-hooks/set-state-in-effect
-      setFavorites(JSON.parse(savedFavorites));
-    }
-
     const savedActiveUser =
       localStorage.getItem("activeUser");
 
     if (savedActiveUser) {
-      // eslint-disable-next-line react-hooks/set-state-in-effect
-      setActiveUser(JSON.parse(savedActiveUser));
+      const parsedActiveUser = JSON.parse(savedActiveUser);
+      setActiveUser(parsedActiveUser);
+      requestFavorites(parsedActiveUser._id)
+        .then((updatedFavorites) => setFavorites(updatedFavorites))
+        .catch((error) =>
+          console.error("Error loading favorites:", error)
+        );
+      return;
+    }
+
+    const savedFavorites =
+      localStorage.getItem("favorites");
+
+    if (savedFavorites) {
+      setFavorites(JSON.parse(savedFavorites));
     }
 
   }, []);
@@ -66,15 +125,6 @@ export function AppProvider({ children }) {
     );
 
   }, [cart]);
-
-  useEffect(() => {
-
-    localStorage.setItem(
-      "favorites",
-      JSON.stringify(favorites)
-    );
-
-  }, [favorites]);
 
   useEffect(() => {
     if (activeUser) {
@@ -148,28 +198,143 @@ export function AppProvider({ children }) {
 
   const favoritesCount = getFavoritesCount(favorites);
 
-  const addFavorite = (product) => {
-    setFavorites((prevFavorites) =>
-      addFavoriteItem(prevFavorites, product)
-    );
+  const loadFavorites = async (user = activeUser) => {
+    if (!user) {
+      const savedFavorites =
+        localStorage.getItem("favorites");
+
+      if (savedFavorites) {
+        setFavorites(JSON.parse(savedFavorites));
+        return JSON.parse(savedFavorites);
+      }
+
+      setFavorites([]);
+      return [];
+    }
+
+    try {
+      const updatedFavorites = await requestFavorites(user._id);
+      setFavorites(updatedFavorites);
+      return updatedFavorites;
+    } catch (error) {
+      console.error("Error loading favorites:", error);
+      return favorites;
+    }
   };
 
-  const removeFavorite = (productId) => {
-    setFavorites((prevFavorites) =>
-      removeFavoriteItem(prevFavorites, productId)
-    );
+  const syncFavorites = async (user = activeUser) => {
+    if (!user) {
+      return favorites;
+    }
+
+    const savedFavorites =
+      localStorage.getItem("favorites");
+
+    const temporaryFavorites = savedFavorites
+      ? JSON.parse(savedFavorites)
+      : [];
+
+    const favoriteIds = temporaryFavorites.map((product) => product._id);
+
+    try {
+      if (favoriteIds.length === 0) {
+        return await loadFavorites(user);
+      }
+
+      const updatedFavorites = await requestSyncFavorites(user._id, favoriteIds);
+      setFavorites(updatedFavorites);
+      localStorage.removeItem("favorites");
+      return updatedFavorites;
+    } catch (error) {
+      console.error("Error syncing favorites:", error);
+      return favorites;
+    }
   };
 
-  const isProductFavorite = (productId) =>
+  const addFavorite = async (product) => {
+    if (activeUser) {
+      try {
+        const updatedFavorites = await requestAddFavorite(
+          activeUser._id,
+          product._id
+        );
+        setFavorites(updatedFavorites);
+      } catch (error) {
+        console.error("Error adding favorite:", error);
+      }
+
+      return;
+    }
+
+    setFavorites((prevFavorites) => {
+      const updatedFavorites = addFavoriteItem(prevFavorites, product);
+      localStorage.setItem(
+        "favorites",
+        JSON.stringify(updatedFavorites)
+      );
+      return updatedFavorites;
+    });
+  };
+
+  const removeFavorite = async (productId) => {
+    if (activeUser) {
+      try {
+        const updatedFavorites = await requestRemoveFavorite(
+          activeUser._id,
+          productId
+        );
+        setFavorites(updatedFavorites);
+      } catch (error) {
+        console.error("Error removing favorite:", error);
+      }
+
+      return;
+    }
+
+    setFavorites((prevFavorites) => {
+      const updatedFavorites = removeFavoriteItem(prevFavorites, productId);
+      localStorage.setItem(
+        "favorites",
+        JSON.stringify(updatedFavorites)
+      );
+      return updatedFavorites;
+    });
+  };
+
+  const isFavorite = (productId) =>
     checkIsFavorite(favorites, productId);
 
-  // User
-  const loginUser = (user) => {
-    setActiveUser(user);
+  const isProductFavorite = isFavorite;
+
+  const toggleFavorite = (product) => {
+    if (isFavorite(product._id)) {
+      removeFavorite(product._id);
+      return;
+    }
+
+    addFavorite(product);
   };
+
+  const clearFavorites = () => {
+    setFavorites([]);
+    localStorage.removeItem("favorites");
+  };
+
+  // User
+  const loginUser = async (user) => {
+    setActiveUser(user);
+    localStorage.setItem(
+      "activeUser",
+      JSON.stringify(user)
+    );
+    await syncFavorites(user);
+  };
+
   const logoutUser = () => {
     setActiveUser(null);
+    setFavorites([]);
     localStorage.removeItem("activeUser");
+    localStorage.removeItem("favorites");
   };
 
   const value = {
@@ -196,7 +361,12 @@ export function AppProvider({ children }) {
 
     addFavorite,
     removeFavorite,
+    loadFavorites,
+    isFavorite,
     isProductFavorite,
+    toggleFavorite,
+    syncFavorites,
+    clearFavorites,
 
     loginUser,
     logoutUser,
