@@ -92,6 +92,11 @@ const orderSchema = new mongoose.Schema(
       enum: ["Active", "Closed", "Shipped", "Canceled"],
       default: "Active",
     },
+    user: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+      required: false,
+    },
     customer: {
       type: customerSchema,
       required: true,

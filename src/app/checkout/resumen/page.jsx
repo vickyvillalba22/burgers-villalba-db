@@ -15,6 +15,7 @@ export default function CheckoutReviewPage() {
     checkoutData,
     clearCart,
     setCheckoutData,
+    activeUser
   } = useAppContext();
   
   const router = useRouter();
@@ -64,7 +65,8 @@ export default function CheckoutReviewPage() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           customer: checkoutData,
-          cart: cart,
+          cart,
+          userId: activeUser?._id,
         }),
         signal: abortControllerRef.current.signal,
       });

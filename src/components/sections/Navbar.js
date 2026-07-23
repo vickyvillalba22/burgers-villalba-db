@@ -59,6 +59,12 @@ export default function Navbar() {
               >
                 Cerrar sesión
               </button>
+              <Link
+                href="/user"
+                className="rounded-lg px-3 py-2 text-sm hover:bg-slate-100 hover:text-slate-950 cursor-pointer"
+              >
+                Mi perfil
+              </Link>
             </>
           ) : (
             <>

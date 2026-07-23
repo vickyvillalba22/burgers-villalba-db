@@ -10,10 +10,10 @@ export async function POST(request) {
   try {
     // 1. Recibir el body de la request
     const body = await request.json();
-    const { customer, cart } = body;
+    const { customer, cart, userId } = body;
 
     // 2. Llamar a la función createOrder que ya tiene toda la lógica
-    const order = await createOrder({ customer, cart });
+    const order = await createOrder({ customer, cart, userId });
 
     // 3. Responder con éxito
     return Response.json(

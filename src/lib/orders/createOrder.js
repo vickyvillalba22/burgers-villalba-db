@@ -9,7 +9,7 @@ import { connectDB } from "@/lib/mongodb";
  * @param {Array} params.cart - Array de items del carrito
  * @returns {Promise<Object>} Orden creada
  */
-export async function createOrder({ customer, cart }) {
+export async function createOrder({ customer, cart, userId }) {
   // Conectar a la base de datos
   await connectDB();
 
@@ -50,6 +50,7 @@ export async function createOrder({ customer, cart }) {
   const newOrder = new Order({
     orderNumber,
     status: "Active", // Valor por defecto, se puede especificar también
+    user: userId || null,
     customer,
     items,
     total,
