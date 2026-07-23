@@ -1,6 +1,5 @@
 "use client";
 
-import { useContext } from "react";
 import { useAppContext } from "@/app/context/AppContext";
 import UserProfile from "@/components/user/UserProfile";
 
