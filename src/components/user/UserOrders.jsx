@@ -1,5 +1,5 @@
-import Link from "next/link";
 import UserOrderCard from "./UserOrderCard";
+import BackButton from "../ui/BackButton";
 
 export default function UserOrders({ orders, loading, error }) {
   if (loading) {
@@ -32,6 +32,9 @@ export default function UserOrders({ orders, loading, error }) {
 
   return (
     <section className="container mx-auto py-10">
+
+      <BackButton />
+
       <h1 className="text-2xl font-bold mb-6">
         Mis órdenes
       </h1>
