@@ -12,7 +12,7 @@ export default function OrderItems({ items }) {
 
         {items.map((item) => (
           <OrderItemCard
-            key={item.productId}
+            key={item._id}
             item={item}
           />
         ))}
