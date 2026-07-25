@@ -2,7 +2,7 @@ import { calculatePrice } from "@/lib/calculatePrice";
 import { burgerCustomizationConfig } from "@/lib/customizationConfig";
 import { useAppContext } from "@/app/context/AppContext";
 
-const PriceSummary = ({ product, customization }) => {
+const PriceSummary = ({ product, customization, showButton=true }) => {
   const size = burgerCustomizationConfig.sizes.find(
     (item) => item.value === customization.size
   );
@@ -129,6 +129,7 @@ const PriceSummary = ({ product, customization }) => {
         </span>
       </div>
 
+    {showButton && (
       <button
         disabled={product.stock === 0}
         className={`mt-6 w-full rounded-full px-6 py-4 font-semibold text-white transition cursor-pointer ${
@@ -144,6 +145,7 @@ const PriceSummary = ({ product, customization }) => {
           ? "Agregar al carrito"
           : "Sin stock"}
       </button>
+    )}
 
     </section>
   );

@@ -40,7 +40,7 @@ export default function Builder() {
         const data = await response.json();
 
         setProduct(data);
-        
+
       } catch (error) {
         console.error(error);
       }
@@ -114,11 +114,12 @@ export default function Builder() {
             setCustomization={setCustomization}
           />
 
-          <div className="mt-8">
+          {/*<div className="mt-8">
             <BuilderSummary
               customization={customization}
             />
-          </div>
+          </div>*/}
+
 
           <div className="mt-8">
             <StepNavigation
@@ -142,6 +143,7 @@ export default function Builder() {
             <PriceSummary
               product={product}
               customization={customization}
+              showButton={step === TOTAL_STEPS}
             />
           </div>
 
