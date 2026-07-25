@@ -1,3 +1,4 @@
+import Link from "next/link";
 import ProductGrid from "@/components/sections/ProductGrid";
 import ErrorMsg from "@/components/ui/ErrorMsg";
 import HeroSection from "@/components/sections/HeroSection";
@@ -9,6 +10,8 @@ const HomeContainer = ({ products }) => {
       <div className="mx-auto max-w-6xl">
 
         <HeroSection />
+
+        <Link href='/build-burger'>Crear mi hamburguesa</Link>
 
         {products.length > 0 ? (
           <ProductGrid products={products} />
