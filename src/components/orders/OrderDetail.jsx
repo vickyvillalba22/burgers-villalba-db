@@ -2,8 +2,9 @@ import OrderCustomer from "./OrderCustomer";
 import OrderHeader from "./OrderHeader";
 import OrderItems from "./OrderItems";
 import OrderSummary from "./OrderSummary";
+import OrderStatusSelector from "./OrderStatusSelector";
 
-export default function OrderDetail({ order, loading, error }) {
+export default function OrderDetail({ order, loading, error, isAdmin = false, onStatusChange }) {
   if (loading) {
     return (
       <section className="container mx-auto py-10">
@@ -38,6 +39,13 @@ export default function OrderDetail({ order, loading, error }) {
       <OrderItems items={order.items} />
 
       <OrderSummary total={order.total} />
+
+      {isAdmin && order && (
+        <OrderStatusSelector
+          order={order}
+          onStatusChange={onStatusChange}
+        />
+      )}
 
     </section>
   );

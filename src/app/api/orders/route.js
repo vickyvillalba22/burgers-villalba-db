@@ -1,4 +1,4 @@
-import { createOrder } from "@/lib/orders";
+import { createOrder, getOrders } from "@/lib/orders";
 
 export const dynamic = "force-dynamic";
 
@@ -43,6 +43,35 @@ export async function POST(request) {
         error: error.message,
       },
       { status: statusCode }
+    );
+  }
+}
+
+/**
+ * Obtiene todas las órdenes
+ * GET /api/orders
+ */
+export async function GET() {
+  try {
+    const orders = await getOrders();
+
+    return Response.json(
+      {
+        success: true,
+        orders,
+      },
+      { status: 200 }
+    );
+  } catch (error) {
+    console.error("Error getting orders:", error);
+
+    return Response.json(
+      {
+        success: false,
+        message: "Error al obtener las órdenes",
+        error: error.message,
+      },
+      { status: 500 }
     );
   }
 }
