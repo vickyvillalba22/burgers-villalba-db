@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { Icon } from "@iconify/react";
 
 import { useAppContext } from "@/app/context/AppContext";
 import ConfirmDialog from "@/components/ui/ConfirmDialog";
@@ -8,6 +9,7 @@ import ConfirmDialog from "@/components/ui/ConfirmDialog";
 const FavoriteToggle = ({
   product,
   requireConfirmOnRemove = false,
+  showText = false,
   className = "",
 }) => {
   const {
@@ -53,15 +55,21 @@ const FavoriteToggle = ({
             ? "Quitar de favoritos"
             : "Agregar a favoritos"
         }
-        className={`text-sm font-medium transition hover:opacity-80 ${
-          isFavorite
-            ? "text-amber-500"
-            : "text-slate-600"
-        } ${className}`}
+        className={`inline-flex items-center justify-center p-2 rounded-full bg-white/80 hover:bg-white shadow-sm hover:scale-110 transition-all cursor-pointer ${className}`}
       >
-        {isFavorite
-          ? "Quitar de favoritos"
-          : "Agregar a favoritos"}
+        <Icon
+          icon="hugeicons:favourite"
+          className={`w-6 h-6 transition-colors ${
+            isFavorite
+              ? "text-red-500 fill-red-500"
+              : "text-slate-400 hover:text-slate-600 fill-transparent"
+          }`}
+        />
+        {showText && (
+          <span className="ml-1.5 text-sm font-medium text-slate-700">
+            {isFavorite ? "Quitar de favoritos" : "Agregar a favoritos"}
+          </span>
+        )}
       </button>
 
       <ConfirmDialog

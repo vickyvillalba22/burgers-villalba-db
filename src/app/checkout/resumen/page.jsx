@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState, useRef, useEffect } from "react";
+import { Icon } from "@iconify/react";
 
 import { useAppContext } from "@/app/context/AppContext";
 import BackButton from "@/components/ui/BackButton";
@@ -282,9 +283,10 @@ export default function CheckoutReviewPage() {
           <button
             onClick={handleConfirmPurchase}
             disabled={isLoading}
-            className="w-full rounded-full bg-(--accent) py-3 font-semibold text-white disabled:opacity-50"
+            className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-(--accent) py-3 font-semibold text-white disabled:opacity-50 hover:opacity-90 transition cursor-pointer"
           >
-            {isLoading ? "Procesando..." : "Confirmar compra"}
+            <Icon icon="hugeicons:checkmark-circle-02" className="w-5 h-5" />
+            <span>{isLoading ? "Procesando..." : "Confirmar compra"}</span>
           </button>
 
         </aside>

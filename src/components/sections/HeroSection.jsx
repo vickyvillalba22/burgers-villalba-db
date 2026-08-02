@@ -58,7 +58,7 @@ const HeroSection = () => {
           </span>
 
           <Image
-            src="/images/hero_image.png"
+            src="/images/products/classic-burger.png"
             alt="Hamburguesa principal"
             width={250}
             height={250}
@@ -66,7 +66,7 @@ const HeroSection = () => {
             className="w-350px h-auto object-contain z-2"
           />
 
-          
+
           {/* BURGERS */}
           <div>
             <h1 className="font-titles text-9xl leading-none text-accent text-(--accent) -translate-y-11 z-1">BURGERS</h1>
@@ -74,14 +74,14 @@ const HeroSection = () => {
 
         </div>
 
-        {/* CTA */}
+        {/* CTA 
         <div className="mt-2 flex justify-center">
 
           <button className="rounded-full bg-(--accent) px-8 py-3 font-semibold text-white transition hover:scale-105 mb-10">
             ORDER NOW
           </button>
 
-        </div>
+        </div> */}
 
       </div>
 

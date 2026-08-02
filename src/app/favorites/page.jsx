@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { Icon } from "@iconify/react";
 
 import { useAppContext } from "@/app/context/AppContext";
 import CardProduct from "@/components/ui/CardProduct";
@@ -15,7 +16,8 @@ export default function FavoritesPage() {
       <BackButton />
 
       <div className="mb-8">
-        <h1 className="text-3xl font-bold">
+        <h1 className="text-3xl font-bold flex items-center gap-3">
+          <Icon icon="hugeicons:favourite" className="w-8 h-8 text-amber-500" />
           Mis favoritos
         </h1>
 
@@ -26,6 +28,7 @@ export default function FavoritesPage() {
 
       {favorites.length === 0 ? (
         <section className="flex flex-col items-center gap-4 rounded-xl border p-10 text-center">
+          <Icon icon="hugeicons:favourite" className="w-16 h-16 text-slate-300" />
           <h2 className="text-xl font-semibold">
             Todavía no tenés favoritos
           </h2>
@@ -36,8 +39,9 @@ export default function FavoritesPage() {
 
           <Link
             href="/"
-            className="rounded-lg bg-amber-500 px-4 py-2 font-medium text-white"
+            className="inline-flex items-center gap-2 rounded-lg bg-amber-500 px-4 py-2 font-medium text-white hover:bg-amber-600 transition"
           >
+            <Icon icon="hugeicons:burger-01" className="w-5 h-5" />
             Ver productos
           </Link>
         </section>

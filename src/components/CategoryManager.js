@@ -2,6 +2,7 @@
 
 import { useCallback, useState, useTransition } from "react";
 import { useRouter } from "next/navigation";
+import { Icon } from "@iconify/react";
 
 import {
   createCategory,
@@ -90,7 +91,8 @@ export default function CategoryManager({ initialCategories = [] }) {
   return (
     <div className="grid gap-8 lg:grid-cols-[360px_1fr]">
       <section className="rounded-lg border border-black/10 bg-white p-6 shadow-sm">
-        <h2 className="text-2xl font-semibold text-slate-900">
+        <h2 className="text-2xl font-semibold text-slate-900 flex items-center gap-2">
+          <Icon icon="hugeicons:menu-square-01" className="w-6 h-6 text-amber-500" />
           {editingId ? "Editar categoria" : "Nueva categoria"}
         </h2>
         <p className="mt-2 text-sm text-slate-600">
@@ -116,17 +118,19 @@ export default function CategoryManager({ initialCategories = [] }) {
 
           <div className="flex gap-3">
             <button
-              className="rounded-lg bg-slate-900 px-4 py-3 text-sm font-semibold text-white"
+              className="inline-flex items-center gap-1.5 rounded-lg bg-slate-900 px-4 py-3 text-sm font-semibold text-white cursor-pointer hover:bg-slate-800 transition"
               disabled={isSaving}
               type="submit"
             >
+              <Icon icon={editingId ? "hugeicons:floppy-disk" : "hugeicons:add-circle-half-dot"} className="w-4 h-4" />
               {isSaving ? "Guardando..." : editingId ? "Actualizar" : "Crear"}
             </button>
             <button
-              className="rounded-lg border border-slate-300 px-4 py-3 text-sm font-semibold text-slate-700"
+              className="inline-flex items-center gap-1.5 rounded-lg border border-slate-300 px-4 py-3 text-sm font-semibold text-slate-700 cursor-pointer hover:bg-slate-50 transition"
               type="button"
               onClick={resetForm}
             >
+              <Icon icon="hugeicons:cancel-01" className="w-4 h-4" />
               Limpiar
             </button>
           </div>
@@ -138,17 +142,21 @@ export default function CategoryManager({ initialCategories = [] }) {
       <section className="rounded-lg border border-black/10 bg-white p-6 shadow-sm">
         <div className="flex items-center justify-between gap-4">
           <div>
-            <h2 className="text-2xl font-semibold text-slate-900">Categorias</h2>
+            <h2 className="text-2xl font-semibold text-slate-900 flex items-center gap-2">
+              <Icon icon="hugeicons:menu-square-01" className="w-6 h-6 text-amber-500" />
+              Categorias
+            </h2>
             <p className="mt-2 text-sm text-slate-600">
               Lista de rubros disponibles para los productos.
             </p>
           </div>
           <button
-            className="rounded-lg border border-slate-300 px-4 py-3 text-sm font-semibold text-slate-700"
+            className="inline-flex items-center gap-1.5 rounded-lg border border-slate-300 px-4 py-3 text-sm font-semibold text-slate-700 cursor-pointer hover:bg-slate-50 transition"
             disabled={isRefreshing}
             type="button"
             onClick={refreshCategories}
           >
+            <Icon icon="hugeicons:refresh" className="w-4 h-4" />
             {isRefreshing ? "Recargando..." : "Recargar"}
           </button>
         </div>
@@ -174,17 +182,19 @@ export default function CategoryManager({ initialCategories = [] }) {
 
                 <div className="mt-4 flex gap-3">
                   <button
-                    className="rounded-lg bg-amber-100 px-4 py-2 text-sm font-semibold text-amber-900"
+                    className="inline-flex items-center gap-1.5 rounded-lg bg-amber-100 px-4 py-2 text-sm font-semibold text-amber-900 cursor-pointer hover:bg-amber-200 transition"
                     type="button"
                     onClick={() => handleEdit(category)}
                   >
+                    <Icon icon="hugeicons:pencil-edit-01" className="w-4 h-4" />
                     Editar
                   </button>
                   <button
-                    className="rounded-lg bg-red-100 px-4 py-2 text-sm font-semibold text-red-900"
+                    className="inline-flex items-center gap-1.5 rounded-lg bg-red-100 px-4 py-2 text-sm font-semibold text-red-900 cursor-pointer hover:bg-red-200 transition"
                     type="button"
                     onClick={() => handleDelete(category._id)}
                   >
+                    <Icon icon="hugeicons:trash-01" className="w-4 h-4" />
                     Eliminar
                   </button>
                 </div>

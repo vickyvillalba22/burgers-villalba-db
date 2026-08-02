@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { Icon } from "@iconify/react";
 
 import FavoriteToggle from "@/components/favorites/FavoriteToggle";
 
@@ -19,7 +20,7 @@ export default function CardProduct({
   requireConfirmOnRemove = false,
 }) {
   return (
-    <article className="group relative overflow-hidden rounded-3xl bg-white p-5 transition-all hover:-translate-y-1">
+    <article className="group relative overflow-hidden rounded-3xl bg-white p-5 transition-all hover:-translate-y-1 shadow-sm hover:shadow-md">
 
       {showFavoriteToggle && (
         <div className="absolute right-5 top-5 z-10">

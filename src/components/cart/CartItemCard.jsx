@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Image from "next/image";
+import { Icon } from "@iconify/react";
 
 import { useAppContext } from "@/app/context/AppContext";
 import ConfirmDialog from "@/components/ui/ConfirmDialog";
@@ -130,10 +131,10 @@ const CartItemCard = ({ item }) => {
               <button
                 type="button"
                 onClick={handleDecrease}
-                className="flex h-8 w-8 items-center justify-center rounded-full border"
+                className="flex h-8 w-8 items-center justify-center rounded-full border hover:bg-slate-100 cursor-pointer"
                 aria-label="Disminuir cantidad"
               >
-                -
+                <Icon icon="hugeicons:remove-01" className="w-4 h-4" />
               </button>
 
               <span className="font-semibold">
@@ -148,10 +149,10 @@ const CartItemCard = ({ item }) => {
                     item.quantity + 1
                   )
                 }
-                className="flex h-8 w-8 items-center justify-center rounded-full border"
+                className="flex h-8 w-8 items-center justify-center rounded-full border hover:bg-slate-100 cursor-pointer"
                 aria-label="Aumentar cantidad"
               >
-                +
+                <Icon icon="hugeicons:add-01" className="w-4 h-4" />
               </button>
 
             </div>
@@ -165,9 +166,10 @@ const CartItemCard = ({ item }) => {
           <button
             type="button"
             onClick={() => setShowRemoveConfirm(true)}
-            className="w-fit text-sm text-red-500"
+            className="inline-flex items-center gap-1 w-fit text-sm text-red-500 hover:text-red-700 cursor-pointer"
           >
-            Eliminar
+            <Icon icon="hugeicons:trash-01" className="w-4 h-4" />
+            <span>Eliminar</span>
           </button>
 
         </div>

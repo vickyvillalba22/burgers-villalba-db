@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { Icon } from "@iconify/react";
 import { useAppContext } from "@/app/context/AppContext";
 import CartItemCard from "@/components/cart/CartItemCard";
 import BackButton from "@/components/ui/BackButton";
@@ -14,7 +15,8 @@ export default function CartPage() {
         <BackButton />
 
       <div className="mb-8">
-        <h1 className="text-3xl font-bold">
+        <h1 className="text-3xl font-bold flex items-center gap-3">
+          <Icon icon="hugeicons:shopping-cart-01" className="w-8 h-8 text-amber-500" />
           Mi carrito
         </h1>
 
@@ -25,6 +27,7 @@ export default function CartPage() {
 
       {cart.length === 0 ? (
         <section className="flex flex-col items-center gap-4 rounded-xl border p-10 text-center">
+          <Icon icon="hugeicons:shopping-cart-01" className="w-16 h-16 text-slate-300" />
           <h2 className="text-xl font-semibold">
             Tu carrito está vacío
           </h2>
@@ -35,8 +38,9 @@ export default function CartPage() {
 
           <Link
             href="/"
-            className="rounded-lg bg-amber-500 px-4 py-2 font-medium text-white"
+            className="inline-flex items-center gap-2 rounded-lg bg-amber-500 px-4 py-2 font-medium text-white hover:bg-amber-600 transition"
           >
+            <Icon icon="hugeicons:burger-01" className="w-5 h-5" />
             Ver productos
           </Link>
         </section>
@@ -54,21 +58,26 @@ export default function CartPage() {
 
           <aside className="h-fit rounded-xl border p-6">
 
-            <h2 className="mb-4 text-xl font-semibold">
+            <h2 className="mb-4 text-xl font-semibold flex items-center gap-2">
+              <Icon icon="hugeicons:receipt-01" className="w-5 h-5 text-amber-500" />
               Resumen
             </h2>
 
-            <div className="mb-4 flex justify-between">
-              <span>Total</span>
-              <span className="font-bold">
+            <div className="mb-4 flex justify-between items-center">
+              <span className="flex items-center gap-1.5 text-neutral-600">
+                <Icon icon="hugeicons:money-01" className="w-5 h-5 text-amber-500" />
+                Total
+              </span>
+              <span className="font-bold text-xl text-amber-600">
                 ${cartTotal}
               </span>
             </div>
 
             <Link
               href="/checkout"
-              className="block w-full rounded-lg bg-amber-500 px-4 py-3 text-center font-medium text-white"
+              className="inline-flex w-full items-center justify-center gap-2 rounded-lg bg-amber-500 px-4 py-3 text-center font-medium text-white hover:bg-amber-600 transition"
             >
+              <Icon icon="hugeicons:shopping-basket-02" className="w-5 h-5" />
               Continuar al checkout
             </Link>
 

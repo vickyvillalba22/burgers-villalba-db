@@ -1,11 +1,10 @@
 "use client";
 
 import Link from "next/link";
+import { Icon } from "@iconify/react";
 
 import { useAppContext } from "@/app/context/AppContext";
 import CartItemCard from "./CartItemCard";
-
-
 
 const CartSidebar = () => {
 
@@ -37,12 +36,13 @@ const CartSidebar = () => {
 
         <div className="flex items-center justify-between border-b p-4">
 
-          <h2 className="text-xl font-bold">
+          <h2 className="text-xl font-bold flex items-center gap-2">
+            <Icon icon="hugeicons:shopping-cart-01" className="w-6 h-6 text-amber-500" />
             Carrito
           </h2>
 
-          <button onClick={closeCart}>
-            ✕
+          <button onClick={closeCart} className="p-1 rounded hover:bg-slate-100 cursor-pointer" aria-label="Cerrar carrito">
+            <Icon icon="hugeicons:cancel-01" className="w-6 h-6 text-slate-600" />
           </button>
 
         </div>
@@ -53,7 +53,8 @@ const CartSidebar = () => {
 
             {cart.length === 0 ? (
 
-            <p className="text-center text-slate-500">
+            <p className="text-center text-slate-500 py-10 flex flex-col items-center gap-2">
+                <Icon icon="hugeicons:shopping-cart-01" className="w-12 h-12 text-slate-300" />
                 Tu carrito está vacío
             </p>
 
@@ -72,15 +73,17 @@ const CartSidebar = () => {
 
         <div className="border-t p-4">
 
-            <p className="mb-4 text-lg font-bold">
-            Total: ${cartTotal}
+            <p className="mb-4 text-lg font-bold flex items-center justify-between">
+              <span>Total:</span>
+              <span className="text-amber-600">${cartTotal}</span>
             </p>
 
             <Link
               href="/cart"
               onClick={closeCart}
-              className="block w-full rounded-full bg-(--accent) py-3 text-center font-semibold text-white"
+              className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-(--accent) py-3 text-center font-semibold text-white hover:opacity-90 transition"
             >
+              <Icon icon="hugeicons:shopping-basket-02" className="w-5 h-5" />
               Ir al carrito
             </Link>
 

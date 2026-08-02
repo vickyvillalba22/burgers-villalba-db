@@ -1,30 +1,36 @@
 import Link from "next/link";
+import { Icon } from "@iconify/react";
 
 export default function UserOrderCard({ order }) {
   return (
-    <article className="border rounded-lg p-4">
-      <p>
+    <article className="border rounded-lg p-4 bg-white shadow-sm space-y-2">
+      <p className="flex items-center gap-1.5 font-medium">
+        <Icon icon="hugeicons:shopping-bag-01" className="w-4 h-4 text-amber-500" />
         <strong>Orden:</strong> #{order.orderNumber}
       </p>
 
-      <p>
+      <p className="flex items-center gap-1.5 text-sm text-slate-600">
+        <Icon icon="hugeicons:information-circle" className="w-4 h-4 text-slate-400" />
         <strong>Estado:</strong> {order.status}
       </p>
 
-      <p>
+      <p className="flex items-center gap-1.5 text-sm text-slate-600">
+        <Icon icon="hugeicons:dollar-01" className="w-4 h-4 text-slate-400" />
         <strong>Total:</strong> ${order.total}
       </p>
 
-      <p>
+      <p className="flex items-center gap-1.5 text-sm text-slate-600">
+        <Icon icon="hugeicons:calendar-01" className="w-4 h-4 text-slate-400" />
         <strong>Fecha:</strong>{" "}
         {new Date(order.createdAt).toLocaleDateString()}
       </p>
 
       <Link
         href={`/user/order/${order._id}`}
-        className="inline-block mt-3 text-blue-600 hover:underline"
+        className="inline-flex items-center gap-1.5 mt-3 text-sm font-semibold text-amber-600 hover:underline"
       >
-        Ver detalle
+        <Icon icon="hugeicons:eye" className="w-4 h-4" />
+        <span>Ver detalle</span>
       </Link>
     </article>
   );

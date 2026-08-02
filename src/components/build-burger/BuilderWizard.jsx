@@ -1,4 +1,5 @@
 import { burgerCustomizationConfig } from "@/lib/customizationConfig";
+import { Icon } from "@iconify/react";
 
 export default function BuilderWizard({
   step,
@@ -41,20 +42,25 @@ export default function BuilderWizard({
   }) => (
     <button
       onClick={onClick}
-      className={`w-full rounded-lg border p-4 text-left transition cursor-pointer ${
+      className={`w-full rounded-lg border p-4 text-left transition cursor-pointer flex items-center justify-between ${
         selected
           ? "border-(--accent) bg-orange-50"
           : "hover:border-zinc-400"
       }`}
       key={label}
     >
-      <p className="font-semibold">
-        {label}
-      </p>
+      <div>
+        <p className="font-semibold">
+          {label}
+        </p>
 
-      <p className="text-sm text-zinc-500">
-        ${price}
-      </p>
+        <p className="text-sm text-zinc-500">
+          ${price}
+        </p>
+      </div>
+      {selected && (
+        <Icon icon="hugeicons:checkmark-circle-02" className="w-5 h-5 text-amber-500" />
+      )}
     </button>
   );
 
@@ -64,7 +70,8 @@ export default function BuilderWizard({
       return (
         <section className="rounded-xl border p-6">
 
-          <h2 className="mb-6 text-2xl font-bold">
+          <h2 className="mb-6 text-2xl font-bold flex items-center gap-2">
+            <Icon icon="hugeicons:burger-01" className="w-6 h-6 text-amber-500" />
             Elegí el tamaño
           </h2>
 
@@ -90,7 +97,8 @@ export default function BuilderWizard({
       return (
         <section className="rounded-xl border p-6">
 
-          <h2 className="mb-6 text-2xl font-bold">
+          <h2 className="mb-6 text-2xl font-bold flex items-center gap-2">
+            <Icon icon="hugeicons:dish-01" className="w-6 h-6 text-amber-500" />
             Elegí el medallón
           </h2>
 
@@ -116,7 +124,8 @@ export default function BuilderWizard({
       return (
         <section className="rounded-xl border p-6">
 
-          <h2 className="mb-6 text-2xl font-bold">
+          <h2 className="mb-6 text-2xl font-bold flex items-center gap-2">
+            <Icon icon="hugeicons:add-circle-half-dot" className="w-6 h-6 text-amber-500" />
             Elegí los extras
           </h2>
 
@@ -142,7 +151,8 @@ export default function BuilderWizard({
       return (
         <section className="rounded-xl border p-6">
 
-          <h2 className="mb-6 text-2xl font-bold">
+          <h2 className="mb-6 text-2xl font-bold flex items-center gap-2">
+            <Icon icon="hugeicons:french-fries" className="w-6 h-6 text-amber-500" />
             Elegí las papas
           </h2>
 
@@ -168,7 +178,8 @@ export default function BuilderWizard({
       return (
         <section className="rounded-xl border p-6">
 
-          <h2 className="mb-6 text-2xl font-bold">
+          <h2 className="mb-6 text-2xl font-bold flex items-center gap-2">
+            <Icon icon="hugeicons:cup-01" className="w-6 h-6 text-amber-500" />
             Elegí la bebida
           </h2>
 

@@ -1,6 +1,7 @@
 import { calculatePrice } from "@/lib/calculatePrice";
 import { burgerCustomizationConfig } from "@/lib/customizationConfig";
 import { useAppContext } from "@/app/context/AppContext";
+import { Icon } from "@iconify/react";
 
 const PriceSummary = ({ product, customization, showButton=true }) => {
   const size = burgerCustomizationConfig.sizes.find(
@@ -32,7 +33,8 @@ const PriceSummary = ({ product, customization, showButton=true }) => {
   return (
     <section className="sticky top-6 h-fit rounded-2xl border border-zinc-200 bg-white p-6 shadow-sm">
 
-      <h3 className="mb-6 text-xl font-bold">
+      <h3 className="mb-6 text-xl font-bold flex items-center gap-2">
+        <Icon icon="hugeicons:receipt-01" className="w-5 h-5 text-amber-500" />
         Resumen del pedido
       </h3>
 
@@ -120,7 +122,8 @@ const PriceSummary = ({ product, customization, showButton=true }) => {
       <div className="my-6 border-t border-zinc-200" />
 
       <div className="flex items-center justify-between">
-        <span className="text-lg font-bold">
+        <span className="text-lg font-bold flex items-center gap-1.5">
+          <Icon icon="hugeicons:money-01" className="w-5 h-5 text-amber-500" />
           Total
         </span>
 
@@ -132,7 +135,7 @@ const PriceSummary = ({ product, customization, showButton=true }) => {
     {showButton && (
       <button
         disabled={product.stock === 0}
-        className={`mt-6 w-full rounded-full px-6 py-4 font-semibold text-white transition cursor-pointer ${
+        className={`mt-6 inline-flex w-full items-center justify-center gap-2 rounded-full px-6 py-4 font-semibold text-white transition cursor-pointer ${
           product.stock > 0
             ? "bg-(--accent) hover:scale-[1.02]"
             : "cursor-not-allowed bg-slate-400"
@@ -141,6 +144,7 @@ const PriceSummary = ({ product, customization, showButton=true }) => {
           addToCart(product, customization);
         }}
       >
+        <Icon icon="hugeicons:shopping-cart-01" className="w-5 h-5" />
         {product.stock > 0
           ? "Agregar al carrito"
           : "Sin stock"}

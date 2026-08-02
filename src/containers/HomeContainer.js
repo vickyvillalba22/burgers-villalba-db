@@ -1,7 +1,9 @@
 import Link from "next/link";
+import { Icon } from "@iconify/react";
 import ProductGrid from "@/components/sections/ProductGrid";
 import ErrorMsg from "@/components/ui/ErrorMsg";
 import HeroSection from "@/components/sections/HeroSection";
+import BuildBurgerSection from "@/components/sections/BuildBurgerSection";
 
 const HomeContainer = ({ products }) => {
 
@@ -11,7 +13,7 @@ const HomeContainer = ({ products }) => {
 
         <HeroSection />
 
-        <Link href='/build-burger'>Crear mi hamburguesa</Link>
+        <BuildBurgerSection />
 
         {products.length > 0 ? (
           <ProductGrid products={products} />

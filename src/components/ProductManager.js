@@ -6,6 +6,7 @@ import {
   useTransition,
 } from "react";
 import { useRouter } from "next/navigation";
+import { Icon } from "@iconify/react";
 
 import {
   createProduct,
@@ -119,7 +120,8 @@ export default function ProductManager({
   return (
     <div className="grid gap-8 lg:grid-cols-[360px_1fr]">
       <section className="rounded-lg border border-black/10 bg-white p-6 shadow-sm">
-        <h2 className="text-2xl font-semibold text-slate-900">
+        <h2 className="text-2xl font-semibold text-slate-900 flex items-center gap-2">
+          <Icon icon="hugeicons:package-01" className="w-6 h-6 text-amber-500" />
           {editingId ? "Editar producto" : "Nuevo producto"}
         </h2>
         <p className="mt-2 text-sm text-slate-600">
@@ -223,17 +225,19 @@ export default function ProductManager({
 
           <div className="flex gap-3">
             <button
-              className="rounded-lg bg-slate-900 px-4 py-3 text-sm font-semibold text-white"
+              className="inline-flex items-center gap-1.5 rounded-lg bg-slate-900 px-4 py-3 text-sm font-semibold text-white cursor-pointer hover:bg-slate-800 transition"
               disabled={isSaving}
               type="submit"
             >
+              <Icon icon={editingId ? "hugeicons:floppy-disk" : "hugeicons:add-circle-half-dot"} className="w-4 h-4" />
               {isSaving ? "Guardando..." : editingId ? "Actualizar" : "Crear"}
             </button>
             <button
-              className="rounded-lg border border-slate-300 px-4 py-3 text-sm font-semibold text-slate-700"
+              className="inline-flex items-center gap-1.5 rounded-lg border border-slate-300 px-4 py-3 text-sm font-semibold text-slate-700 cursor-pointer hover:bg-slate-50 transition"
               type="button"
               onClick={resetForm}
             >
+              <Icon icon="hugeicons:cancel-01" className="w-4 h-4" />
               Limpiar
             </button>
           </div>
@@ -245,17 +249,21 @@ export default function ProductManager({
       <section className="rounded-lg border border-black/10 bg-white p-6 shadow-sm">
         <div className="flex items-center justify-between gap-4">
           <div>
-            <h2 className="text-2xl font-semibold text-slate-900">Productos</h2>
+            <h2 className="text-2xl font-semibold text-slate-900 flex items-center gap-2">
+              <Icon icon="hugeicons:package-01" className="w-6 h-6 text-amber-500" />
+              Productos
+            </h2>
             <p className="mt-2 text-sm text-slate-600">
               Lista obtenida desde el container del dashboard.
             </p>
           </div>
           <button
-            className="rounded-lg border border-slate-300 px-4 py-3 text-sm font-semibold text-slate-700"
+            className="inline-flex items-center gap-1.5 rounded-lg border border-slate-300 px-4 py-3 text-sm font-semibold text-slate-700 cursor-pointer hover:bg-slate-50 transition"
             disabled={isRefreshing}
             type="button"
             onClick={refreshProducts}
           >
+            <Icon icon="hugeicons:refresh" className="w-4 h-4" />
             {isRefreshing ? "Recargando..." : "Recargar"}
           </button>
         </div>
@@ -277,8 +285,11 @@ export default function ProductManager({
                     </p>
                   </div>
                   <div className="text-right text-sm text-slate-700">
-                    <p>${product.price}</p>
-                    <p>Stock: {product.stock}</p>
+                    <p className="font-bold text-lg">${product.price}</p>
+                    <p className="flex items-center gap-1 text-slate-500 justify-end text-xs mt-1">
+                      <Icon icon="hugeicons:archive-01" className="w-3.5 h-3.5" />
+                      Stock: {product.stock}
+                    </p>
                   </div>
                 </div>
 
@@ -301,17 +312,19 @@ export default function ProductManager({
 
                 <div className="mt-4 flex gap-3">
                   <button
-                    className="rounded-lg bg-amber-100 px-4 py-2 text-sm font-semibold text-amber-900"
+                    className="inline-flex items-center gap-1.5 rounded-lg bg-amber-100 px-4 py-2 text-sm font-semibold text-amber-900 cursor-pointer hover:bg-amber-200 transition"
                     type="button"
                     onClick={() => handleEdit(product)}
                   >
+                    <Icon icon="hugeicons:pencil-edit-01" className="w-4 h-4" />
                     Editar
                   </button>
                   <button
-                    className="rounded-lg bg-red-100 px-4 py-2 text-sm font-semibold text-red-900"
+                    className="inline-flex items-center gap-1.5 rounded-lg bg-red-100 px-4 py-2 text-sm font-semibold text-red-900 cursor-pointer hover:bg-red-200 transition"
                     type="button"
                     onClick={() => handleDelete(product._id)}
                   >
+                    <Icon icon="hugeicons:trash-01" className="w-4 h-4" />
                     Eliminar
                   </button>
                 </div>
