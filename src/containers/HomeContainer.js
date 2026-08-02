@@ -1,31 +1,45 @@
 import Link from "next/link";
+import Image from "next/image";
 import { Icon } from "@iconify/react";
 import ProductGrid from "@/components/sections/ProductGrid";
 import ErrorMsg from "@/components/ui/ErrorMsg";
-import HeroSection from "@/components/sections/HeroSection";
-import BuildBurgerSection from "@/components/sections/BuildBurgerSection";
+import HeroBanner from "@/components/sections/HeroBanner";
+import CategoryList from "@/components/sections/CategoryList";
 
-const HomeContainer = ({ products }) => {
+const HomeContainer = ({ products, categories }) => {
 
   return (
-    <main className="min-h-screen px-6 py-10 text-slate-900">
-      <div className="mx-auto max-w-6xl">
+    <main className="min-h-screen px-6 py-6 text-slate-900 bg-background">
+      <div className="mx-auto max-w-6xl space-y-8">
 
-        <HeroSection />
+        {/* Hero Section */}
+        <HeroBanner />
 
-        <BuildBurgerSection />
+        {/* Categories Section */}
+        <CategoryList categories={categories} />
 
-        {products.length > 0 ? (
-          <ProductGrid products={products} />
-        ) : (
-          <ErrorMsg
-            title="No hay hamburguesas disponibles"
-            description="Todavía no se cargaron productos en el catálogo."
-            buttonText="Ir al Dashboard"
-            buttonHref="/dashboard"
-            image="/images/errors/empty-products.svg"
-          />
-        )}
+        {/* Popular Combos Section */}
+        <section>
+          <div className="flex items-center justify-between mb-6">
+            <h2 className="text-xl font-bold text-slate-900">Popular Combos</h2>
+            <Link href="/categories" className="text-orange-500 text-xs font-bold flex items-center gap-1 hover:underline">
+              View All
+              <Icon icon="hugeicons:arrow-right-01" className="w-3 h-3" />
+            </Link>
+          </div>
+          
+          {products.length > 0 ? (
+            <ProductGrid products={products} />
+          ) : (
+            <ErrorMsg
+              title="No hay hamburguesas disponibles"
+              description="Todavía no se cargaron productos en el catálogo."
+              buttonText="Ir al Dashboard"
+              buttonHref="/dashboard"
+              image="/images/errors/empty-products.svg"
+            />
+          )}
+        </section>
 
       </div>
     </main>

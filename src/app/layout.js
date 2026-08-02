@@ -5,6 +5,7 @@ import { AppProvider } from "@/app/context/AppContext";
 import Navbar from "@/components/sections/Navbar";
 import Footer from "@/components/sections/Footer";
 import CartSidebar from "@/components/cart/CartSideBar";
+import BottomNavbar from "@/components/sections/BottomNavbar";
 
 import "./globals.css";
 
@@ -45,7 +46,10 @@ export default function RootLayout({ children }) {
         <AppProvider>
           <Navbar />
           <CartSidebar />
-          {children}
+          <main className="flex-1 pb-20 lg:pb-0">
+            {children}
+          </main>
+          <BottomNavbar />
           <Footer />
         </AppProvider>
       </body>
