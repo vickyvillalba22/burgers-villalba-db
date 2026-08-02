@@ -20,7 +20,7 @@ export default function ProductCustomizationContainer({ product }) {
 
   return (
 
-    <section className="flex flex-col gap-8">
+    <section className="flex gap-8">
       <ProdCustomization
         product={product}
         customization={customization}

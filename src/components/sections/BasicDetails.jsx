@@ -5,7 +5,7 @@ import FavoriteToggle from '@/components/favorites/FavoriteToggle'
 
 const BasicDetails = ({product}) => {
   return (
-    <section className="flex flex-col justify-evenly w-[50%] h-[50vh] gap-12">
+    <section className="bg-white/10 backdrop-blur-md rounded-xl p-6 shadow-lg flex flex-col lg:flex-row gap-8 items-center">
 
     <div className="rounded-3xl p-6 h-[40vh]">
         {product.image ? (
