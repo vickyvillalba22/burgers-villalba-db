@@ -4,9 +4,9 @@ import { Icon } from "@iconify/react";
 import ProductGrid from "@/components/sections/ProductGrid";
 import ErrorMsg from "@/components/ui/ErrorMsg";
 import HeroBanner from "@/components/sections/HeroBanner";
-import CategoryList from "@/components/sections/CategoryList";
+import BuildBurgerCTA from "@/components/sections/BuildBurgerSection";
 
-const HomeContainer = ({ products, categories }) => {
+const HomeContainer = ({ products }) => {
 
   return (
     <main className="min-h-screen px-6 py-6 text-slate-900 bg-background">
@@ -15,13 +15,13 @@ const HomeContainer = ({ products, categories }) => {
         {/* Hero Section */}
         <HeroBanner />
 
-        {/* Categories Section */}
-        <CategoryList categories={categories} />
+        {/*build your burger section*/}
+        <BuildBurgerCTA />
 
         {/* Popular Combos Section */}
         <section>
           <div className="flex items-center justify-between mb-6">
-            <h2 className="text-xl font-bold text-slate-900">Popular Combos</h2>
+            <h2 className="text-xl font-bold text-slate-900">Combos populares</h2>
             <Link href="/categories" className="text-orange-500 text-xs font-bold flex items-center gap-1 hover:underline">
               View All
               <Icon icon="hugeicons:arrow-right-01" className="w-3 h-3" />

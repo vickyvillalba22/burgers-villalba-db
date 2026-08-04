@@ -12,9 +12,9 @@ const RelatedProducts = async ({ product }) => {
   if (!relatedProducts.length) return null;
 
   return (
-    <section className='w-[90%] flex flex-col gap-6'>
+    <section className='flex flex-col gap-6 h-[50vh]'>
 
-      <h2 className='text-[30px]'>Productos relacionados</h2>
+      <h2 className='text-[30px] font-bold'>Productos relacionados</h2>
 
       <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
         {relatedProducts.map((relatedProduct) => (

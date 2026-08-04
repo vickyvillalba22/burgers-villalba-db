@@ -5,10 +5,12 @@ import ProductCustomizationCont from "@/components/customization/ProductCustomiz
 
 const ProductDetailCont = ({ product }) => {
   return (
-    <main className="container mx-auto min-h-screen px-6 py-8">
+
+    <main className="container mx-auto min-h-screen px-6 py-8 flex flex-col items-center">
+
       <BackButton />
 
-      <section className="mt-6 grid grid-cols-1 xl:grid-cols-12 gap-10 items-start">
+      <section className="mt-6 grid grid-cols-1 xl:grid-cols-12 gap-10 items-start h-[80vh] w-[80%]">
         {/* Información del producto */}
         <div className="xl:col-span-4">
           <BasicDetails product={product} />
@@ -20,7 +22,7 @@ const ProductDetailCont = ({ product }) => {
         </div>
       </section>
 
-      <section className="mt-16">
+      <section className="mt-24 w-[80%]">
         <RelatedProducts product={product} />
       </section>
     </main>

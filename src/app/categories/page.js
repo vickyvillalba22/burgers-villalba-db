@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { Icon } from "@iconify/react";
 
 import { getCategories } from "@/lib/categories";
 
@@ -11,9 +12,12 @@ export default async function CategoriesPage() {
     <main className="min-h-screen px-6 py-10 text-slate-900">
       <div className="mx-auto max-w-6xl">
         <section className="mb-8">
-          <h1 className="mt-4 max-w-3xl text-4xl font-semibold">
-            Categorías
-          </h1>
+          <div className="flex items-center gap-2">
+            <Icon icon="hugeicons:filter" className="w-8 h-8 text-amber-500" />
+            <h1 className="max-w-3xl text-4xl font-semibold">Categorías</h1>
+          </div>
+        
+            
           <p className="mt-4 max-w-2xl text-base text-slate-600">
             Cada categoria lista los productos asociados desde su pagina publica.
           </p>

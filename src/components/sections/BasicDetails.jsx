@@ -5,16 +5,16 @@ import FavoriteToggle from '@/components/favorites/FavoriteToggle'
 
 const BasicDetails = ({product}) => {
   return (
-    <section className="bg-white/10 backdrop-blur-md rounded-xl p-6 shadow-lg flex flex-col lg:flex-row gap-8 items-center">
+    <section className="rounded-xl flex flex-col gap-4 items-center h-[60vh] relative">
 
-    <div className="rounded-3xl p-6 h-[40vh]">
+    <div className="rounded-3xl p-4">
         {product.image ? (
         <Image
             src={`${product.image}`}
             width={400}
             height={300}
             alt={product.name}
-            className="mx-auto object-contain drop-shadow-xl h-[40vh]"
+            className="mx-auto object-contain drop-shadow-xl h-[30vh]"
         />
         ) : (
         <div className="flex items-center justify-center text-slate-500">
@@ -25,7 +25,7 @@ const BasicDetails = ({product}) => {
 
   <div className="flex flex-col justify-center">
 
-    <h1 className="font-titles text-5xl leading-none text-accent md:text-6xl">
+    <h1 className="font-titles text-5xl leading-none text-accent md:text-3xl">
       {product.name}
     </h1>
 
@@ -34,7 +34,7 @@ const BasicDetails = ({product}) => {
     </p>
 
     {product.categories?.length > 0 && (
-      <div className="mt-5 flex flex-wrap gap-2">
+      <div className="mt-5 flex flex-wrap gap-2 absolute top-0">
         {product.categories.map((category) => (
           <span
             key={typeof category === "string" ? category : category._id}
@@ -46,23 +46,23 @@ const BasicDetails = ({product}) => {
       </div>
     )}
 
-    <div className="mt-6 flex items-center gap-4">
+    <div className="mt-6 flex flex-col gap-4">
       <span className="text-4xl font-bold text-accent">
         ${product.price}
       </span>
 
       {product.stock > 0 ? (
-        <span className="rounded-full bg-green-100 px-3 py-1 text-sm font-medium text-green-700">
+        <span className="rounded-full bg-green-100 px-3 py-1 text-sm font-medium text-green-700 w-fit">
           {product.stock} disponibles
         </span>
       ) : (
-        <span className="rounded-full bg-red-100 px-3 py-1 text-sm font-medium text-red-700">
+        <span className="rounded-full bg-red-100 px-3 py-1 text-sm font-medium text-red-700 w-fit">
           Sin stock
         </span>
       )}
     </div>
 
-    <div className="mt-4">
+    <div className="mt-4 absolute top-0 right-0">
       <FavoriteToggle product={product} />
     </div>
 

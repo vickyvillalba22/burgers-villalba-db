@@ -22,9 +22,9 @@ const ProdCustomization = ({product, customization, setCustomization}) => {
     
 
   return (
-    <section className='flex flex-col gap-6'>
+    <section className='flex flex-col gap-8 w-fit'>
 
-        <h3 className='text-[28px]'>Product customization</h3>
+        <h3 className='text-[24px] font-bold'>Product customization</h3>
 
         {/*TAMAÑO*/}
         <OptionGroup title="Tamaño">

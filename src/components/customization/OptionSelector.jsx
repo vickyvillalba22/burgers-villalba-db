@@ -1,6 +1,6 @@
 const OptionSelector = ({options, value, onChange, type = "radio"}) => {
   return (
-    <div className="flex flex-wrap gap-3">
+    <div className="flex flex-wrap gap-2">
 
       {options.map((option) => {
 
@@ -14,7 +14,7 @@ const OptionSelector = ({options, value, onChange, type = "radio"}) => {
             key={option.value}
             type="button"
             onClick={() => onChange(option)}
-            className={`rounded-full border px-4 py-2 transition cursor-pointer text-[14px] ${
+            className={`rounded-full border px-4 py-1 transition cursor-pointer text-[14px] ${
               isSelected
                 ? "border-black bg-black text-white"
                 : "border-zinc-300"

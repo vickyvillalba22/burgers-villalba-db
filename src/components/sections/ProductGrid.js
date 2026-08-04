@@ -11,12 +11,14 @@ export default function ProductGrid({ products = [] }) {
 
   return (
     <div className="grid grid-cols-2 gap-4 lg:grid-cols-3">
-      {products.map((product) => (
-        <CardProduct
-          key={product._id}
-          product={product}
-        />
-      ))}
+      {products
+        .filter(product => product.name != "base arma tu hamburguesa")
+        .map((product) => (
+          <CardProduct
+            key={product._id}
+            product={product}
+          />
+        ))}
     </div>
   );
 }

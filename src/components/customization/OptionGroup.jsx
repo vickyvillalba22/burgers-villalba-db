@@ -1,6 +1,6 @@
 const OptionGroup = ({title, children}) => {
   return (
-    <section className="space-y-4 rounded-2xl">
+    <section className="flex items-center gap-4 w-fit">
 
       <p className="text-md font-semibold">
         {title}

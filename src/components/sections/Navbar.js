@@ -37,80 +37,137 @@ export default function Navbar() {
 
       <nav className="mx-auto max-w-6xl px-6 py-4 text-slate-900">
         
-        {/* Top Header Row */}
-        <div className="flex items-center justify-between gap-4">
-          
-          <div className="flex items-center gap-4">
-            {/* Hamburger Toggle */}
-            <button 
-              className="flex items-center justify-center p-2 rounded-xl bg-white shadow-sm border border-slate-100 hover:bg-slate-50 transition-colors"
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
-            >
-              <Icon 
-                icon={isMenuOpen ? "hugeicons:cancel-01" : "hugeicons:menu-01"} 
-                className="w-6 h-6" 
-              />
-            </button>
+        <div className="flex items-center justify-between">
 
-            <div className="hidden sm:block">
-               <p className="text-xs text-slate-500 font-medium flex items-center gap-1">
-                Hi, {activeUser?.name || "Guest"}! 👋
-              </p>
-              <h1 className="text-xl font-bold leading-none mt-1">
-                Crispy. Juicy. Always Delicious.
-              </h1>
-            </div>
-          </div>
+  {/* Logo + Mobile */}
+  <div className="flex items-center gap-4">
+    <button
+      className="lg:hidden flex items-center justify-center p-2 rounded-xl bg-white shadow-sm border border-slate-100 hover:bg-slate-50 transition-colors"
+      onClick={() => setIsMenuOpen(!isMenuOpen)}
+    >
+      <Icon
+        icon={isMenuOpen ? "hugeicons:cancel-01" : "hugeicons:menu-01"}
+        className="w-6 h-6"
+      />
+    </button>
 
-          <Link className="sm:hidden text-lg fontDeco text-(--accent)" href="/">
-            Best Burgers
-          </Link>
+    <Link href="/" className="flex flex-col">
+      <span className="fontDeco text-3xl text-(--accent)">
+        Best Burgers
+      </span>
 
-          <div className="flex items-center gap-2">
-            <button onClick={toggleCart} className="p-2 rounded-xl bg-white shadow-sm border border-slate-100 relative">
-              <Icon icon="hugeicons:shopping-cart-01" className="w-6 h-6" />
-              {cartItemsCount > 0 && (
-                <span className="absolute -top-1 -right-1 flex h-5 w-5 items-center justify-center rounded-full bg-red-500 text-[10px] text-white font-bold border-2 border-white">
-                  {cartItemsCount}
-                </span>
-              )}
-            </button>
-          </div>
-        </div>
+    </Link>
+  </div>
 
-        {/* Desktop Title & Welcome (Visible only on desktop) */}
-        <div className="hidden lg:flex flex-col mt-4">
-           <p className="text-sm text-slate-500 font-medium">
-            Hi, {activeUser?.name || "Guest"}! 👋
-          </p>
-          <div className="flex items-center justify-between">
-            <h1 className="text-3xl font-bold leading-tight mt-1">
-              Crispy. Juicy.<br />Always Delicious.
-            </h1>
+  {/* Desktop Navigation */}
+  <div className="hidden lg:flex items-center gap-2">
 
-            {/* Desktop Navigation */}
-            <div className="hidden lg:flex items-center gap-2 self-end mb-1">
-              {links.map((link) => (
-                <Link
-                  key={link.href}
-                  className="flex items-center gap-1.5 rounded-xl px-4 py-2 text-sm font-medium hover:bg-slate-100 hover:text-slate-950 transition-colors"
-                  href={link.href}
-                >
-                  {link.label}
-                </Link>
-              ))}
+    {links.map((link) => (
+      <Link
+        key={link.href}
+        href={link.href}
+        className="rounded-xl px-4 py-2 text-sm font-medium hover:bg-slate-100 transition"
+      >
+        {link.label}
+      </Link>
+    ))}
 
-              {activeUser?.role === "admin" && (
-                <Link
-                  href="/dashboard"
-                  className="flex items-center gap-1.5 rounded-xl px-4 py-2 text-sm font-medium hover:bg-slate-100 hover:text-slate-950 transition-colors"
-                >
-                  Dashboard
-                </Link>
-              )}
-            </div>
-          </div>
-        </div>
+    <Link
+      href="/favorites"
+      className="relative rounded-xl p-2 hover:bg-slate-100 transition flex gap-2 items-center"
+    >
+      <Icon icon="hugeicons:favourite" className="w-4 h-4"/>
+
+      <span className="font-medium text-sm">Favoritos</span>
+
+      {favoritesCount > 0 && (
+        <span className="absolute -top-1 -right-1 flex h-5 w-5 items-center justify-center rounded-full bg-red-500 text-[10px] text-white">
+          {favoritesCount}
+        </span>
+      )}
+    </Link>
+
+    {activeUser && (
+      <Link
+        href="/user"
+        className="rounded-xl px-4 py-2 text-sm font-medium hover:bg-slate-100 transition"
+      >
+        Mi perfil
+      </Link>
+    )}
+
+    {activeUser?.role === "admin" && (
+      <Link
+        href="/dashboard"
+        className="rounded-xl px-4 py-2 text-sm font-medium hover:bg-slate-100 transition"
+      >
+        Dashboard
+      </Link>
+    )}
+
+    {activeUser ? (
+      <button
+        onClick={logoutUser}
+        className="rounded-xl px-4 py-2 text-sm font-medium hover:bg-red-50 hover:text-red-600 transition"
+      >
+        Salir
+      </button>
+    ) : (
+      <>
+        <Link
+          href="/login"
+          className="rounded-xl px-4 py-2 text-sm font-medium hover:bg-slate-100"
+        >
+          Login
+        </Link>
+
+        <Link
+          href="/register"
+          className="rounded-xl bg-amber-500 px-4 py-2 text-sm font-medium text-white hover:bg-amber-600"
+        >
+          Registro
+        </Link>
+      </>
+    )}
+
+    <button
+      onClick={toggleCart}
+      className="relative rounded-xl bg-white p-2 border shadow-sm"
+    >
+      <Icon
+        icon="hugeicons:shopping-cart-01"
+        className="w-6 h-6"
+      />
+
+      {cartItemsCount > 0 && (
+        <span className="absolute -top-1 -right-1 flex h-5 w-5 items-center justify-center rounded-full bg-red-500 text-[10px] text-white">
+          {cartItemsCount}
+        </span>
+      )}
+    </button>
+
+  </div>
+
+  {/* Mobile Cart */}
+  <div className="lg:hidden">
+    <button
+      onClick={toggleCart}
+      className="relative rounded-xl bg-white p-2 border shadow-sm"
+    >
+      <Icon
+        icon="hugeicons:shopping-cart-01"
+        className="w-6 h-6"
+      />
+
+      {cartItemsCount > 0 && (
+        <span className="absolute -top-1 -right-1 flex h-5 w-5 items-center justify-center rounded-full bg-red-500 text-[10px] text-white">
+          {cartItemsCount}
+        </span>
+      )}
+    </button>
+  </div>
+
+</div>
 
         {/* Mobile Navigation Dropdown */}
         {isMenuOpen && (
