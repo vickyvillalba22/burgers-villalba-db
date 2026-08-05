@@ -35,7 +35,7 @@ export default function Navbar() {
 
     <header className={`sticky top-0 z-50 transition-all duration-300 ${isScrolled || isMenuOpen ? "bg-white shadow-md" : "bg-transparent"}`}>
 
-      <nav className="mx-auto max-w-6xl px-6 py-4 text-slate-900">
+      <nav className="mx-auto w-[80%] py-4 text-slate-900">
         
         <div className="flex items-center justify-between">
 
@@ -76,7 +76,6 @@ export default function Navbar() {
       href="/favorites"
       className="relative rounded-xl p-2 hover:bg-slate-100 transition flex gap-2 items-center"
     >
-      <Icon icon="hugeicons:favourite" className="w-4 h-4"/>
 
       <span className="font-medium text-sm">Favoritos</span>
 
@@ -132,11 +131,11 @@ export default function Navbar() {
 
     <button
       onClick={toggleCart}
-      className="relative rounded-xl bg-white p-2 border shadow-sm"
+      className="relative rounded-xl bg-white p-2 shadow-sm"
     >
       <Icon
         icon="hugeicons:shopping-cart-01"
-        className="w-6 h-6"
+        className="w-6 h-6 hover:text-orange-400"
       />
 
       {cartItemsCount > 0 && (

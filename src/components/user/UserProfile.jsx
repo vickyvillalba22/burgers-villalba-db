@@ -44,7 +44,7 @@ export default function UserProfile({ user, favoritesCount }) {
   return (
     <section className="container mx-auto py-10 px-4 max-w-4xl w-[80%]">
 
-      <h1 className="text-3xl font-bold mb-8 flex items-center gap-3">
+      <h1 className="text-3xl font-medium mb-8 flex items-center gap-3">
         <Icon icon="hugeicons:user" className="w-8 h-8 text-amber-500" />
         Mi Perfil
       </h1>

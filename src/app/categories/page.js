@@ -2,6 +2,7 @@ import Link from "next/link";
 import { Icon } from "@iconify/react";
 
 import { getCategories } from "@/lib/categories";
+import BackButton from "@/components/ui/BackButton";
 
 export const dynamic = "force-dynamic";
 
@@ -9,12 +10,14 @@ export default async function CategoriesPage() {
   const categories = await getCategories();
 
   return (
-    <main className="min-h-screen px-6 py-10 text-slate-900">
-      <div className="mx-auto max-w-6xl">
+    <main className="min-h-screen mt-8 text-slate-900 flex flex-col items-center w-[80%] justify-self-center">
+      <div className="mx-auto w-full">
         <section className="mb-8">
-          <div className="flex items-center gap-2">
+          <BackButton />
+
+          <div className="flex items-center gap-2 mt-4 text-3xl ">
             <Icon icon="hugeicons:filter" className="w-8 h-8 text-amber-500" />
-            <h1 className="max-w-3xl text-4xl font-semibold">Categorías</h1>
+            <h1 className="max-w-3xl font-medium">Categorías</h1>
           </div>
         
             

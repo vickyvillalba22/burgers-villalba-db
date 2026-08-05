@@ -3,7 +3,7 @@ import { Icon } from "@iconify/react";
 
 export default function UserOrderCard({ order }) {
   return (
-    <article className="border rounded-lg p-4 bg-white shadow-sm space-y-2">
+    <article className="rounded-lg p-4 bg-white shadow-sm space-y-2 w-[30%]">
       <p className="flex items-center gap-1.5 font-medium">
         <Icon icon="hugeicons:shopping-bag-01" className="w-4 h-4 text-amber-500" />
         <strong>Orden:</strong> #{order.orderNumber}

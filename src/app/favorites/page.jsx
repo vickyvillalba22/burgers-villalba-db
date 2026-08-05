@@ -11,12 +11,12 @@ export default function FavoritesPage() {
   const { favorites } = useAppContext();
 
   return (
-    <main className="container mx-auto w-[90%] px-4 py-8">
+    <main className="container mx-auto w-[80%] mt-8">
 
       <BackButton />
 
-      <div className="mb-8">
-        <h1 className="text-3xl font-bold flex items-center gap-3">
+      <div className="mb-8 mt-4">
+        <h1 className="text-3xl font-medium flex items-center gap-3">
           <Icon icon="hugeicons:favourite" className="w-8 h-8 text-amber-500" />
           Mis favoritos
         </h1>

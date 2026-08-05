@@ -4,6 +4,7 @@ import { useState, useRef, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import BackButton from "@/components/ui/BackButton";
 import { useAppContext } from "@/app/context/AppContext";
+import { Icon } from "@iconify/react";
 
 export default function RegisterPage() {
   const router = useRouter();
@@ -78,9 +79,11 @@ export default function RegisterPage() {
 
   return (
     <main className="container mx-auto max-w-2xl px-4 py-8">
+
       <BackButton />
 
-      <h1 className="mb-8 text-3xl font-bold">
+      <h1 className="text-3xl font-medium flex items-center gap-3 mt-6 mb-4">
+        <Icon icon="hugeicons:user-add-01" className="w-8 h-8 text-amber-500" />
         Registrarse
       </h1>
 

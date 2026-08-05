@@ -1,5 +1,6 @@
 import UserOrderCard from "./UserOrderCard";
 import BackButton from "../ui/BackButton";
+import { Icon } from "@iconify/react";
 
 export default function UserOrders({ orders, loading, error }) {
   if (loading) {
@@ -31,11 +32,12 @@ export default function UserOrders({ orders, loading, error }) {
   }
 
   return (
-    <section className="container mx-auto py-10">
+    <section className="container mx-auto w-[80%] py-10">
 
       <BackButton />
 
-      <h1 className="text-2xl font-bold mb-6">
+      <h1 className="text-2xl font-medium mb-6 flex gap-2 mt-4">
+        <Icon icon="hugeicons:filter" className="w-8 h-8 text-amber-500" />
         Mis órdenes
       </h1>
 
