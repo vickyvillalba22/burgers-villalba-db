@@ -2,7 +2,7 @@ export default function OrderSummary({ total }) {
   return (
     <section>
 
-      <h2 className="text-xl font-semibold mb-4">
+      <h2 className="text-xl font-light mb-2">
         Resumen
       </h2>
 

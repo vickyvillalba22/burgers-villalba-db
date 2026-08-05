@@ -10,7 +10,7 @@ export default function DashboardOrders({ orders }) {
   }
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-4 flex flex-wrap gap-5 mt-4">
       {orders.map((order) => (
         <DashboardOrderCard
           key={order._id}

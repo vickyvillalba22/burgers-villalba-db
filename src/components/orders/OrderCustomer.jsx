@@ -1,41 +1,90 @@
 export default function OrderCustomer({ customer }) {
   return (
-    <section>
+    <section className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm w-[60%]">
 
-      <h2 className="text-xl font-semibold mb-4">
-        Datos del comprador
-      </h2>
+      <div className="mb-4">
 
-      <div className="space-y-2">
+        <h2 className="mt-2 text-2xl font-bold text-slate-900">
+          Datos del comprador
+        </h2>
+      </div>
 
-        <p>
-          <strong>Nombre:</strong> {customer.fullName}
-        </p>
+      <div className="grid gap-4 sm:grid-cols-2">
 
-        <p>
-          <strong>Email:</strong> {customer.email}
-        </p>
+        <div className="rounded-2xl bg-slate-50 p-4">
+          <p className="text-xs font-medium uppercase tracking-wide text-slate-500">
+            Nombre
+          </p>
 
-        <p>
-          <strong>Teléfono:</strong> {customer.phone}
-        </p>
+          <p className="mt-1 font-semibold text-slate-900">
+            {customer.fullName}
+          </p>
+        </div>
 
-        <p>
-          <strong>Dirección:</strong> {customer.address}
-        </p>
+        <div className="rounded-2xl bg-slate-50 p-4">
+          <p className="text-xs font-medium uppercase tracking-wide text-slate-500">
+            Email
+          </p>
 
-        <p>
-          <strong>Ciudad:</strong> {customer.city}
-        </p>
+          <p className="mt-1 font-semibold text-slate-900 break-all">
+            {customer.email}
+          </p>
+        </div>
 
-        <p>
-          <strong>Código Postal:</strong> {customer.zipCode}
-        </p>
+        <div className="rounded-2xl bg-slate-50 p-4">
+          <p className="text-xs font-medium uppercase tracking-wide text-slate-500">
+            Teléfono
+          </p>
+
+          <p className="mt-1 font-semibold text-slate-900">
+            {customer.phone}
+          </p>
+        </div>
+
+        <div className="rounded-2xl bg-slate-50 p-4">
+          <p className="text-xs font-medium uppercase tracking-wide text-slate-500">
+            Ciudad
+          </p>
+
+          <p className="mt-1 font-semibold text-slate-900">
+            {customer.city}
+          </p>
+        </div>
+
+
+          <div className="rounded-2xl bg-slate-50 p-4">
+          <p className="text-xs font-medium uppercase tracking-wide text-slate-500">
+            Dirección
+          </p>
+
+          <p className="mt-1 font-semibold text-slate-900">
+            {customer.address}
+          </p>
+        </div>
+
+        <div className="rounded-2xl bg-slate-50 p-4">
+          <p className="text-xs font-medium uppercase tracking-wide text-slate-500">
+            Código Postal
+          </p>
+
+          <p className="mt-1 font-semibold text-slate-900">
+            {customer.zipCode}
+          </p>
+          
+        </div>
+
+        
 
         {customer.notes && (
-          <p>
-            <strong>Observaciones:</strong> {customer.notes}
-          </p>
+          <div className="rounded-2xl border border-amber-200 bg-amber-50 p-4 sm:col-span-2">
+            <p className="text-xs font-medium uppercase tracking-wide text-amber-700">
+              Observaciones
+            </p>
+
+            <p className="mt-2 text-slate-700">
+              {customer.notes}
+            </p>
+          </div>
         )}
 
       </div>

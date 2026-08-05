@@ -3,7 +3,7 @@ import { Icon } from "@iconify/react";
 
 export default function DashboardOrderCard({ order }) {
   return (
-    <article className="rounded-lg border border-slate-200 bg-white p-6 shadow-sm">
+    <article className="rounded-lg border border-slate-200 bg-white p-6 shadow-sm w-[30%]">
       <div className="flex items-center justify-between">
 
         <div className="space-y-1">

@@ -8,7 +8,7 @@ export default function OrderItems({ items }) {
         Productos
       </h2>
 
-      <div className="space-y-4">
+      <div className="space-y-4 flex scroll-x-auto gap-4">
 
         {items.map((item) => (
           <OrderItemCard

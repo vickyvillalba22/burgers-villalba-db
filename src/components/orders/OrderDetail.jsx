@@ -30,23 +30,21 @@ export default function OrderDetail({ order, loading, error, isAdmin = false, on
   }
 
   return (
-    <section className="container mx-auto py-10 space-y-8">
+  <section className="container mx-auto min-h-[calc(100vh-7rem)] py-8">
 
-      <OrderHeader order={order} />
+    <div className="flex flex-col gap-10">
 
-      <OrderCustomer customer={order.customer} />
+      <div className="space-y-6 flex justify-between h-[55vh]">
+
+        <OrderHeader order={order} isAdmin={isAdmin} onStatusChange={onStatusChange} />
+
+        <OrderCustomer customer={order.customer} />
+
+      </div>
 
       <OrderItems items={order.items} />
 
-      <OrderSummary total={order.total} />
-
-      {isAdmin && order && (
-        <OrderStatusSelector
-          order={order}
-          onStatusChange={onStatusChange}
-        />
-      )}
-
-    </section>
-  );
+    </div>
+  </section>
+);
 }

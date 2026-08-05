@@ -65,8 +65,8 @@ export default function OrderStatusSelector({
   }
 
   return (
-    <div className="mt-8">
-      <label className="mb-2 block font-medium">
+    <div className="flex flex-col">
+      <label className="text-xs font-medium uppercase tracking-wide text-slate-500">
         Estado
       </label>
 
@@ -74,6 +74,7 @@ export default function OrderStatusSelector({
         value={status}
         disabled={loading}
         onChange={handleChange}
+        className="mt-1 text-lg font-semibold text-slate-900"
         >
         {STATUS_OPTIONS.map((option) => (
             <option

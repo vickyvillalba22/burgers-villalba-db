@@ -3,12 +3,12 @@ import DashboardOrdersContainer from "@/containers/DashboardOrdersContainer";
 
 export default function DashboardOrdersPage() {
   return (
-    <main className="min-h-screen bg-slate-100 px-6 py-10">
+    <main className="min-h-screen px-6 py-10">
       <div className="mx-auto max-w-6xl">
 
         <BackButton />
 
-        <h1 className="text-4xl font-semibold">
+        <h1 className="text-3xl font-medium mt-4">
           Órdenes
         </h1>
 
