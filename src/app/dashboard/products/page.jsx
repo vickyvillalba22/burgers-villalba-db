@@ -26,7 +26,7 @@ export default function DashboardPage() {
         {/* Header */}
         <section className="rounded-3xl bg-linear-to-r from-orange-950 to-orange-800 p-10 text-white shadow-lg mt-4">
           <p className="flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.25em] text-orange-100">
-            Programación 3
+            Administración
           </p>
 
           <h1 className="mt-5 text-4xl font-bold">

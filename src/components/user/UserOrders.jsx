@@ -37,11 +37,11 @@ export default function UserOrders({ orders, loading, error }) {
       <BackButton />
 
       <h1 className="text-2xl font-medium mb-6 flex gap-2 mt-4">
-        <Icon icon="hugeicons:filter" className="w-8 h-8 text-amber-500" />
+        <Icon icon="hugeicons:note-01" className="w-8 h-8 text-amber-500" />
         Mis órdenes
       </h1>
 
-      <div className="space-y-4">
+      <div className="space-y-4 flex flex-wrap gap-4">
         {orders.map((order) => (
             <UserOrderCard
                 key={order._id}

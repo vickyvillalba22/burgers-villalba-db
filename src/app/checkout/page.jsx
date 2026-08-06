@@ -50,7 +50,7 @@ const { cartTotal, checkoutData, setCheckoutData } = useAppContext();
 
     <BackButton />
 
-      <h1 className="mb-8 text-3xl font-bold flex items-center gap-3">
+      <h1 className="mb-8 text-3xl font-medium flex items-center gap-3 mt-4">
         <Icon icon="hugeicons:shopping-basket-02" className="w-8 h-8 text-amber-500" />
         Checkout
       </h1>
@@ -66,14 +66,14 @@ const { cartTotal, checkoutData, setCheckoutData } = useAppContext();
           <section className="rounded-xl border p-6">
 
             <h2 className="mb-4 text-xl font-semibold flex items-center gap-2">
-              <Icon icon="hugeicons:user-01" className="w-5 h-5 text-amber-500" />
+              <Icon icon="hugeicons:identity-card" className="w-5 h-5 text-amber-500" />
               Información personal
             </h2>
 
             <div className="grid gap-4">
 
               <div className="relative flex items-center">
-                <Icon icon="hugeicons:user-01" className="absolute left-3 w-5 h-5 text-slate-400" />
+                <Icon icon="hugeicons:user" className="absolute left-3 w-5 h-5 text-slate-400" />
                 <input
                   type="text"
                   name="fullName"
@@ -152,7 +152,7 @@ const { cartTotal, checkoutData, setCheckoutData } = useAppContext();
               </div>
 
               <div className="relative flex items-center">
-                <Icon icon="hugeicons:pin-01" className="absolute left-3 w-5 h-5 text-slate-400" />
+                <Icon icon="hugeicons:pin" className="absolute left-3 w-5 h-5 text-slate-400" />
                 <input
                   type="text"
                   name="zipCode"

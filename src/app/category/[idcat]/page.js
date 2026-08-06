@@ -5,6 +5,7 @@ import ProductGrid from "@/components/sections/ProductGrid";
 import ErrorMsg from '@/components/ui/ErrorMsg'
 import { getCategoryById } from "@/lib/categories";
 import { getProductsByCategory } from "@/lib/products";
+import BackButton from "@/components/ui/BackButton";
 
 export const dynamic = "force-dynamic";
 
@@ -21,12 +22,8 @@ export default async function CategoryProductsPage({ params }) {
   return (
     <main className="min-h-screen px-6 py-10 text-slate-900">
       <div className="mx-auto max-w-6xl">
-        <Link
-          className="text-sm font-medium text-emerald-700 hover:text-emerald-900"
-          href="/"
-        >
-          Volver al catalogo
-        </Link>
+
+        <BackButton />
 
         <section className="mb-8 mt-6">
           <p className="text-sm uppercase tracking-[0.3em] text-emerald-500">

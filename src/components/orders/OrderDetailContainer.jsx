@@ -40,7 +40,7 @@ export default function OrderDetailContainer({ userId, orderId }) {
   }, [userId, orderId]);
 
   return (
-    <>
+    <section className="w-[80%]">
 
         <BackButton />
 
@@ -50,7 +50,7 @@ export default function OrderDetailContainer({ userId, orderId }) {
         error={error}
         />
         
-    </>
+    </section>
     
   );
 }

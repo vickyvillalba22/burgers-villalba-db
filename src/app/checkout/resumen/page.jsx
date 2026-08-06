@@ -127,9 +127,10 @@ export default function CheckoutReviewPage() {
 
     <main className="container mx-auto max-w-6xl px-4 py-8">
 
-        <BackButton />
+      <BackButton />
 
-      <h1 className="mb-8 text-3xl font-bold">
+      <h1 className="mb-8 text-3xl font-medium flex items-center gap-3 mt-4">
+        <Icon icon="hugeicons:shopping-basket-02" className="w-8 h-8 text-amber-500" />
         Resumen de compra
       </h1>
 

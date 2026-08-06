@@ -17,7 +17,9 @@ const RelatedProducts = async ({ product }) => {
       <h2 className='text-[30px] font-bold'>Productos relacionados</h2>
 
       <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-        {relatedProducts.map((relatedProduct) => (
+        {relatedProducts
+        .filter((relatedProduct)=>relatedProduct.name!="base arma tu hamburguesa")
+        .map((relatedProduct) => (
           <CardProduct
             key={relatedProduct._id}
             product={relatedProduct}

@@ -20,9 +20,12 @@ export default function OrderDetailPage() {
   }
 
   return (
-    <OrderDetailContainer
-      userId={activeUser._id}
-      orderId={id}
-    />
+    <div className="flex justify-center">
+        <OrderDetailContainer
+        userId={activeUser._id}
+        orderId={id}
+        />
+    </div>
+    
   );
 }

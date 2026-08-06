@@ -10,12 +10,12 @@ export default function CartPage() {
   const { cart, cartTotal } = useAppContext();
 
   return (
-    <main className="container mx-auto px-4 py-8 w-[90%]">
+    <main className="container mx-auto px-4 py-8 w-[80%]">
 
-        <BackButton />
+      <BackButton />
 
-      <div className="mb-8">
-        <h1 className="text-3xl font-bold flex items-center gap-3">
+      <div className="mb-8 mt-8 flex flex-col gap-2">
+        <h1 className="text-3xl font-medium flex items-center gap-4">
           <Icon icon="hugeicons:shopping-cart-01" className="w-8 h-8 text-amber-500" />
           Mi carrito
         </h1>
